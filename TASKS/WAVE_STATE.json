@@ -1,0 +1,178 @@
+{
+  "schema_version": "traveler-wave-state-v1",
+  "generated_at": "2026-09-17T12:32:13Z",
+  "waves": [
+    {
+      "wave_id": "W01",
+      "title": "Airbnb 스타일 공통 UI, 정적 데이터, Layout",
+      "task_ids": [
+        "GLOBAL-DESIGN-TOKENS",
+        "GLOBAL-SEO-METADATA",
+        "DATA-DESTINATIONS",
+        "DATA-SAFETY",
+        "DATA-REPRESENTATIVE",
+        "COMP-SHARED-MATE-POST-CARD",
+        "COMP-SHARED-MATE-STATE-UTIL"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W02",
+      "title": "Airbnb 스타일 공통 UI, 정적 데이터, Layout",
+      "task_ids": [
+        "GLOBAL-LAYOUT-NAV-FOOTER",
+        "GLOBAL-A11Y-TOAST",
+        "DB-SCHEMA-BASE",
+        "COMP-SHARED-DESTINATION-CARD",
+        "COMP-SHARED-CTA-BANNER",
+        "COMP-SHARED-FAVORITES-SHARE",
+        "COMP-SCR001-SEARCH-BAR"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W03",
+      "title": "Supabase Auth, 6개 Table, 기본 RLS",
+      "task_ids": [
+        "DB-RLS-BASE",
+        "DB-SEED-BASE",
+        "AUTH-SETUP",
+        "COMP-SCR001-DESTINATION-EXPLORER",
+        "COMP-SCR001-SAFETY-DRAWER",
+        "ROUTE-NOT-FOUND-ERROR",
+        "ROUTE-POLICY-PAGES"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W04",
+      "title": "SCR-002 대표 소개 Component와 Page Owner",
+      "task_ids": [
+        "DB-ACCESS",
+        "COMP-SCR001-DESTINATION-DRAWER",
+        "COMP-SCR002-STAT-CARD",
+        "COMP-SCR002-INTRO-PHILOSOPHY",
+        "COMP-SCR002-TIMELINE",
+        "COMP-SCR002-FOOTPRINT-CHIPS",
+        "COMP-SCR002-GALLERY"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W05",
+      "title": "SCR-003 여행 입력·외부 이동·동행글 입력 Component와 Page Owner",
+      "task_ids": [
+        "API-MATE-POSTS",
+        "API-MATE-APPLICATIONS",
+        "API-REPORTS-BLOCKS",
+        "COMP-SCR002-FAVORITE-PLACES",
+        "COMP-SCR003-TAB-SWITCHER",
+        "COMP-SCR003-FLIGHT-FORM",
+        "COMP-SCR003-HOTEL-FORM"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W06",
+      "title": "SCR-002 대표 소개 Component와 Page Owner",
+      "task_ids": [
+        "COMP-SCR001-MATE-PREVIEW",
+        "COMP-SCR003-MATE-COMPOSER",
+        "COMP-SCR004-FILTER-BAR",
+        "COMP-SCR004-MATE-LIST",
+        "COMP-SCR004-MATE-DETAIL",
+        "COMP-SCR004-PARTICIPATION-REQUEST",
+        "PAGE-SCR002"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W07",
+      "title": "SCR-001 메인 Component와 Page Owner",
+      "task_ids": [
+        "API-ADMIN-OPERATIONS",
+        "COMP-SCR004-REPORT-FORM",
+        "COMP-SCR004-BLOCK-ACTION",
+        "COMP-SCR005-ROLE-TABS",
+        "COMP-SCR005-AUTH-FORMS",
+        "PAGE-SCR001"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W08",
+      "title": "SCR-003 여행 입력·외부 이동·동행글 입력 Component와 Page Owner",
+      "task_ids": [
+        "UNIT-TRAVEL-DATES",
+        "UNIT-CONTACT-DETECTION",
+        "PAGE-SCR003"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W09",
+      "title": "SCR-004 동행 목록·상세·신청 Component와 Page Owner",
+      "task_ids": [
+        "COMP-SCR005-PROFILE-FORM",
+        "COMP-SCR005-MY-ACTIVITY",
+        "COMP-SCR005-ADMIN-PANEL",
+        "UNIT-MATE-STATE",
+        "PAGE-SCR004"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W10",
+      "title": "SCR-005 계정·내 활동·간단 관리자 Component와 Page Owner",
+      "task_ids": [
+        "TEST-RLS-BASIC",
+        "CI-LINT-TYPECHECK-TEST",
+        "PAGE-SCR005"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W11",
+      "title": "Unit·Playwright·접근성·CI",
+      "task_ids": [
+        "E2E-PUBLIC-SMOKE",
+        "E2E-TRAVEL-TOOLS",
+        "E2E-MATE-AUTH"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W12",
+      "title": "Vercel Preview와 Release 확인",
+      "task_ids": [
+        "RELEASE-PERF-A11Y-CHECK",
+        "DEPLOY-VERCEL-ENV"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    }
+  ]
+}
