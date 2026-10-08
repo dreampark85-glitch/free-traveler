@@ -37,15 +37,15 @@
         "GLOBAL-A11Y-TOAST",
         "GLOBAL-LAYOUT-NAV-FOOTER"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null,
       "task_status": {
-        "COMP-SHARED-CTA-BANNER": "pending",
-        "COMP-SHARED-DESTINATION-CARD": "pending",
-        "COMP-SHARED-FAVORITES-SHARE": "pending",
-        "GLOBAL-A11Y-TOAST": "pending",
-        "GLOBAL-LAYOUT-NAV-FOOTER": "pending"
+        "COMP-SHARED-CTA-BANNER": "done",
+        "COMP-SHARED-DESTINATION-CARD": "done",
+        "COMP-SHARED-FAVORITES-SHARE": "done",
+        "GLOBAL-A11Y-TOAST": "done",
+        "GLOBAL-LAYOUT-NAV-FOOTER": "done"
       }
     },
     {
