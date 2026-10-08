@@ -35,7 +35,7 @@
 
 **`/travel-tools`(SCR-003) 구성 확인**: Tab 스위처 3개 — ①항공(비행기 찾기) ②숙소(숙소 찾기) ③동행 작성(동행 구하기, 안전수칙 동의 포함) — 각 탭은 독립된 입력·검증·완료 상태를 가진다(`design-reference/UI_CONTRACT.md` SCR-003 절 참고).
 
-**`/account`(SCR-005) 구성 확인**: 역할 기반 탭 — Guest(로그인/가입) · Adult Member(프로필, 내 활동) · Moderator/Admin(프로필, 내 활동, 관리자[신고 처리 현황 + 외부 연결 링크 관리, 2개 섹션 고정]) — 역할에 없는 탭은 렌더링하지 않는다(`design-reference/UI_CONTRACT.md` SCR-005 절 참고).
+**`/account`(SCR-005) 구성 확인**: 역할 기반 탭 — Guest(로그인/가입) · Adult Member(프로필, 내 활동) · Moderator/Admin(프로필, 내 활동, 관리자[신고 처리 현황 + 외부 URL 설정, 2개 섹션 고정]) — 역할에 없는 탭은 렌더링하지 않는다(`design-reference/UI_CONTRACT.md` SCR-005 절 참고).
 
 ---
 

@@ -14,36 +14,23 @@ It only reads the Depends On graph and produces a deterministic Wave plan:
 
 Algorithm (deliberately simple — no retry loops, no "auto-fix" heuristics):
 
-  1. Parse the Depends On graph from TASK_MANIFEST.csv.
-  2. Detect dependency cycles (DFS 3-color). Abort if any cycle is found —
-     a Wave plan cannot be built on a cyclic graph.
-  3. Classify every Task into one of the 10 narrative Wave groups the user
-     specified (Scaffold -> common UI/data -> Supabase/Auth -> SCR-001..
-     SCR-005 -> Unit/Playwright/CI -> Release) from its category/screen.
-  4. Batch Tasks into Waves with Kahn's algorithm: repeatedly take up to
-     MAX_WAVE_SIZE Tasks from the set of Tasks whose dependencies are ALL
-     already assigned to a strictly earlier Wave, always preferring the
-     lowest (group, seq) Tasks first. Because a Task only ever becomes
-     eligible once every dependency already sits in an earlier Wave, two
-     Tasks placed in the same batch can never depend on each other, and
-     rule 2 (a predecessor is never placed in a later Wave than something
-     that depends on it) holds by construction — not by chance. Depth
-     (longest path from a root) is computed separately only for the
-     informational TASK_DAG.md report. Wave IDs are assigned sequentially
-     in this order — they are NOT fixed to W00..W10; the actual generated
-     TASKS/WAVE_PLAN.md/WAVE_STATE.json IDs become the source of truth for
-     later steps.
-  5. Single forward pass: if two Tasks placed in the same Wave touch the same
-     Expected File path, push the later one (by group/seq order) into the
-     immediately following Wave. This is a one-shot forward sweep, not a
-     retry loop — a Task is moved at most once per pass.
-  6. Within each Wave's printed Task list, PAGE_OWNER Tasks are ordered last
-     (a Page Owner depends on nearly everything else in its screen, so it
-     already becomes eligible last within its own group — this only affects
-     display order, never membership).
-  7. Final verification pass: for every dependency edge, confirm the
-     dependency's Wave index is strictly less than the dependent's Wave
-     index. Abort loudly rather than emit an inconsistent plan.
+  1. Parse the Depends On graph from TASK_MANIFEST.csv; abort on a cycle.
+  2. Classify every Task into one of the 10 narrative groups (Scaffold ->
+     common UI/data -> Supabase/Auth -> SCR-001..SCR-005 -> tests/CI -> Release).
+  3. Build Waves one at a time: among Tasks whose dependencies all sit in
+     earlier Waves, take the lowest group and put up to MAX_WAVE_SIZE of its
+     Tasks (Task ID order) into the Wave. A Task whose Expected File is already
+     used by another Task of the Wave is left for a later Wave. A Page Owner
+     (4개 미만이면 바로 다음 그룹의 ready Task로 채운다) A Page Owner
+     only becomes eligible after every other Task of its screen group is in
+     an earlier Wave, so it is always the screen's last integration Task.
+  4. Verify: every dependency is in a strictly earlier Wave, Page Owners come
+     after their screen's other Tasks, at most one Page Owner per Wave.
+
+Wave IDs are assigned sequentially (W01, W02, ...) — they are NOT fixed to
+W00..W10; the generated WAVE_PLAN.md/WAVE_STATE.json IDs are the source of
+truth. Inside a Wave, Tasks run one at a time in Task ID order (Page Owner last).
+An existing WAVE_STATE.json with progress is never overwritten without --force.
 
 No automatic Branch/PR/Merge feature exists anywhere in this script.
 """
@@ -71,6 +58,7 @@ TASK_DAG_PATH = ROOT / "TASKS" / "TASK_DAG.md"
 WAVE_PLAN_PATH = ROOT / "TASKS" / "WAVE_PLAN.md"
 WAVE_STATE_PATH = ROOT / "TASKS" / "WAVE_STATE.json"
 
+MIN_WAVE_SIZE = 4
 MAX_WAVE_SIZE = 7  # default target is 4-7 Tasks per Wave; small trailing batches under 4 are allowed
 
 GROUP_TITLES: dict[int, str] = {
@@ -189,6 +177,30 @@ def compute_depths(deps: dict[str, list[str]]) -> dict[str, int]:
 def main() -> int:
     rows = load_manifest()
     by_id = {r["task_id"]: r for r in rows}
+
+    # 입력 확인: 상세 Task 파일(TASKS/details/ 또는 TASKS/), Screen 계약의 Page Owner 5개.
+    detail_dirs = [d for d in (ROOT / "TASKS" / "details", ROOT / "TASKS") if d.is_dir()]
+    for task_id in by_id:
+        if not any((d / f"TASK-{task_id}.md").exists() for d in detail_dirs):
+            die(f"TASK-{task_id}.md 상세 파일이 없다. 먼저 /gen-task-details를 실행한다.")
+    if not SCREEN_CONTRACT_PATH.exists():
+        die(f"{SCREEN_CONTRACT_PATH} 파일이 없다.")
+    contract = json.loads(SCREEN_CONTRACT_PATH.read_text(encoding="utf-8"))
+    screen_ids = [s["screen_id"] for s in contract.get("screens", [])]
+    owners = sorted(t for t, r in by_id.items() if r["category"] == "PAGE_OWNER")
+    expected_owners = sorted("PAGE-" + sid.replace("-", "") for sid in screen_ids)
+    if owners != expected_owners:
+        die(f"Page Owner Task({owners})가 Screen 계약({expected_owners})과 다르다.")
+
+    # 진행 기록 보호: 이미 시작된 Wave 상태가 있으면 --force 없이 덮어쓰지 않는다.
+    if WAVE_STATE_PATH.exists() and "--force" not in sys.argv:
+        old = json.loads(WAVE_STATE_PATH.read_text(encoding="utf-8"))
+        started = [w["wave_id"] for w in old.get("waves", [])
+                   if w.get("status") != "pending" or w.get("task_status")
+                   and any(v != "pending" for v in w["task_status"].values())]
+        if started:
+            die(f"WAVE_STATE.json에 진행 기록이 있는 Wave({', '.join(started)})가 있어 덮어쓰지 않는다. "
+                "초기화하려면 --force를 붙인다.")
     seq_of = {r["task_id"]: int(r["seq"]) for r in rows}
 
     deps: dict[str, list[str]] = {r["task_id"]: split_ids(r["depends_on"]) for r in rows}
@@ -211,74 +223,51 @@ def main() -> int:
         for r in rows
     }
 
-    # Kahn's algorithm with (group, seq) priority, batched into Waves of up to
-    # MAX_WAVE_SIZE. Depth-stratification alone would group Tasks purely by
-    # how deep their dependency chain is, which coincidentally mixes unrelated
-    # screens (and even scattered all 5 Page Owners into one Wave) whenever
-    # their chains happened to be equally long. Priority batching instead
-    # always schedules the lowest (group, seq) Tasks whose dependencies are
-    # already scheduled, so Tasks naturally cluster by the user's 10 narrative
-    # groups while still never violating dependency order — a Task only ever
-    # enters `ready` once every dependency has been assigned to a strictly
-    # earlier Wave, so two Tasks in the same batch can never depend on each
-    # other.
-    dependents: dict[str, list[str]] = {t: [] for t in by_id}
-    remaining_deps: dict[str, int] = {}
-    for task_id, dlist in deps.items():
-        remaining_deps[task_id] = len(dlist)
-        for d in dlist:
-            dependents[d].append(task_id)
-
-    scheduled: set[str] = set()
-    ready = sorted([t for t in by_id if remaining_deps[t] == 0], key=lambda t: (groups[t], seq_of[t]))
-    waves: list[list[str]] = []
-
-    while ready:
-        batch = ready[:MAX_WAVE_SIZE]
-        ready = ready[MAX_WAVE_SIZE:]
-        waves.append(batch)
-        newly_ready: list[str] = []
-        for task_id in batch:
-            scheduled.add(task_id)
-            for dependent in dependents[task_id]:
-                remaining_deps[dependent] -= 1
-                if remaining_deps[dependent] == 0:
-                    newly_ready.append(dependent)
-        ready = sorted(ready + newly_ready, key=lambda t: (groups[t], seq_of[t]))
-
-    if len(scheduled) != len(by_id):
-        unscheduled = sorted(set(by_id) - scheduled)
-        die(f"위상 배치가 끝났지만 스케줄되지 않은 Task가 남음(그래프 이상): {unscheduled}")
-
-    # Single forward pass: separate Tasks that touch the same Expected File
-    # within one Wave by pushing the later one into the next Wave.
+    # Wave 배치: 한 Wave에는 한 그룹의 Task만 넣는다. 매 단계마다 "선행 Task가 모두
+    # 이전 Wave에 배치된" ready Task 중 가장 낮은 그룹을 골라 최대 MAX_WAVE_SIZE개를
+    # Task ID 순으로 담는다. 같은 Expected File을 건드리는 Task는 같은 Wave에 담지 않고
+    # (건너뛰어 다음 Wave 후보로 남긴다), Page Owner는 같은 그룹의 나머지 Task가 모두
+    # 이전 Wave에 배치된 뒤에만 후보가 된다(= 그 화면의 마지막 통합 Task).
     files_of = {r["task_id"]: extract_files(r["expected_files"]) for r in rows}
+    is_po = {t: by_id[t]["category"] == "PAGE_OWNER" for t in by_id}
+    scheduled: set[str] = set()
+    waves: list[list[str]] = []
+    wave_anchor: list[int] = []  # Wave 제목을 정하는 그룹(가장 낮은 그룹)
     conflict_moves = 0
-    i = 0
-    while i < len(waves):
-        seen_files: dict[str, str] = {}
-        kept: list[str] = []
-        pushed: list[str] = []
-        for task_id in waves[i]:
-            conflict = next((f for f in files_of[task_id] if f in seen_files), None)
-            if conflict is not None:
-                pushed.append(task_id)
-                conflict_moves += 1
-            else:
-                kept.append(task_id)
-                for f in files_of[task_id]:
-                    seen_files[f] = task_id
-        waves[i] = kept
-        if pushed:
-            if i + 1 == len(waves):
-                waves.append([])
-            waves[i + 1] = pushed + waves[i + 1]
-        i += 1
-    waves = [w for w in waves if w]
 
-    # Page Owner Tasks are listed last within their own Wave (display order only).
-    for w in waves:
-        w.sort(key=lambda t: (1 if by_id[t]["category"] == "PAGE_OWNER" else 0, seq_of[t]))
+    while len(scheduled) < len(by_id):
+        ready = [t for t in by_id
+                 if t not in scheduled and all(d in scheduled for d in deps[t])
+                 and (not is_po[t] or all(x in scheduled for x in by_id
+                      if groups[x] == groups[t] and not is_po[x]))]
+        if not ready:
+            die("배치 가능한 Task가 없음(Page Owner가 같은 그룹 Task의 선행이 되는 등 그래프 이상): "
+                + ", ".join(sorted(set(by_id) - scheduled)))
+        g = min(groups[t] for t in ready)
+        batch: list[str] = []
+        used_files: set[str] = set()
+        for t in sorted((t for t in ready if groups[t] == g), key=lambda t: (is_po[t], t)):
+            if len(batch) >= MAX_WAVE_SIZE:
+                break
+            if any(f in used_files for f in files_of[t]):
+                conflict_moves += 1
+                continue
+            batch.append(t)
+            used_files.update(files_of[t])
+        # 4개 미만이면 바로 다음 그룹의 ready Task(Page Owner 제외, Release 그룹 제외)로 채운다(Page Owner Wave는 채우지 않는다).
+        for t in sorted((t for t in ready if groups[t] == g + 1 <= 9 and not is_po[t]
+                         and not any(is_po[x] for x in batch)),
+                        key=lambda t: (groups[t], t)):
+            if len(batch) >= MIN_WAVE_SIZE:
+                break
+            if any(f in used_files for f in files_of[t]):
+                continue
+            batch.append(t)
+            used_files.update(files_of[t])
+        batch.sort(key=lambda t: (is_po[t], t))
+        waves.append(batch)
+        wave_anchor.append(g)
+        scheduled.update(batch)
 
     wave_index_of: dict[str, int] = {}
     for idx, w in enumerate(waves):
@@ -290,18 +279,20 @@ def main() -> int:
         for d in dlist:
             if wave_index_of[d] >= wave_index_of[task_id]:
                 violations.append(f"{task_id}가 자신의 선행 Task {d}와 같거나 더 이른 Wave에 있음")
+    for t in by_id:
+        if is_po[t]:
+            for x in by_id:
+                if groups[x] == groups[t] and not is_po[x] and wave_index_of[x] >= wave_index_of[t]:
+                    violations.append(f"Page Owner {t}가 같은 화면의 {x}보다 먼저(또는 같은 Wave에) 있음")
+    for idx, w in enumerate(waves):
+        if sum(is_po[t] for t in w) > 1:
+            violations.append(f"Wave 인덱스 {idx}에 Page Owner가 2개 이상 있음")
     if violations:
-        die("Wave 배치가 Depends On 순서를 위반함:\n  - " + "\n  - ".join(violations))
+        die("Wave 배치가 규칙을 위반함:\n  - " + "\n  - ".join(violations))
 
     wave_ids = [f"W{idx+1:02d}" for idx in range(len(waves))]
 
-    def dominant_group(task_ids: list[str]) -> int:
-        counts: dict[int, int] = {}
-        for t in task_ids:
-            counts[groups[t]] = counts.get(groups[t], 0) + 1
-        return sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
-
-    wave_titles = [GROUP_TITLES[dominant_group(w)] for w in waves]
+    wave_titles = [GROUP_TITLES[g] for g in wave_anchor]
     wave_checkpoints = [
         next((t for t in w if by_id[t]["category"] == "PAGE_OWNER"), None) for w in waves
     ]
@@ -366,7 +357,7 @@ def main() -> int:
                 "wave_id": wid,
                 "title": title,
                 "task_ids": w,
-                "status": "pending",
+                "status": "pending",  # pending | in_progress | blocked | completed
                 "checkpoint_required": checkpoint is not None,
                 "checkpoint_result": None,
             }
@@ -388,7 +379,8 @@ def main() -> int:
 
     print("=== Traveler Wave Builder ===")
     print(f"순환 의존성: {cycle_count}건")
-    print(f"파일 충돌로 인해 다음 Wave로 이동된 Task 수: {conflict_moves}건")
+    print(f"파일 충돌로 같은 Wave에서 제외된 횟수: {conflict_moves}건")
+    print(f"Wave당 Task 수 범위: {min(len(w) for w in waves)}~{max(len(w) for w in waves)}개")
     print(f"생성된 Wave 수: {len(waves)}")
     print()
     for wid, title, w, checkpoint in zip(wave_ids, wave_titles, waves, wave_checkpoints):
@@ -396,6 +388,7 @@ def main() -> int:
         print(f"  {wid} ({len(w)}개) — {title}{marker}")
         print(f"    {', '.join(w)}")
     print()
+    print("Page Owner 위치: " + ", ".join(f"{t}→{wave_ids[wave_index_of[t]]}" for t in owners))
     print(f"출력: {TASK_DAG_PATH.relative_to(ROOT)}, {WAVE_PLAN_PATH.relative_to(ROOT)}, "
           f"{WAVE_STATE_PATH.relative_to(ROOT)}, {MANIFEST_PATH.relative_to(ROOT)}(wave_id 열 갱신)")
     print()

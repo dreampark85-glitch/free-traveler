@@ -46,3 +46,5 @@ Load the `traveler-project-pipeline` skill before doing anything else — it def
 9. **사용자에게 보고한다**: Category별 Task 수, 5개 Page Owner Task의 Screen/Route, Requirement 커버리지(IMPLEMENT 배정 수 + EXCLUDED 등재 수 = 114). 누락된 Requirement ID가 있으면 완료로 보고하지 않는다. Task 개수 자체(예상 45~65개)는 완료 조건이 아님을 명시한다.
 
 10. **이 Command는 `TASKS/TASK-*.md`를 만들지 않는다** — 그것은 `/gen-task-details`의 역할이다. 다음 단계로 그것을 실행하라고 안내한다. 구현 코드(`src/**` 실제 파일)도 만들지 않는다.
+
+11. **Task Audit 실패를 무시하지 않는다.** 이 Command는 Task List만 작성하므로 감사(`scripts/audit_tasks.py`)는 `/gen-task-details`의 마지막 단계에서 실행된다. 그 감사가 `AUDIT_FAIL`이면 원인이 Task List에 있는지 확인하고(예: Depends On 누락, Requirement 미배정, Page Owner 수 오류), 이 Command의 산출물을 고쳐 다시 실행한다. `/audit-tasks`를 직접 실행해 현재 상태를 확인할 수도 있다. 실패를 사소하다고 판단해 넘기거나 "완료"로 보고하지 않는다.

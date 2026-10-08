@@ -51,11 +51,11 @@ design-reference/D-001/DESIGN.md §9 Destination Card; design-reference/UI_CONTR
 
 ## Functional AC
 
-제목/국가·지역·기간/모집 인원/스타일 태그/신뢰 배지(매너온도)
+제목/국가·지역·기간/모집 인원/스타일 태그/신뢰 배지(성인 확인 완료 텍스트 배지)
 
 ## Visual AC
 
-별점(★) 금지, 텍스트/배지형 신뢰 지표만
+별점(★)·매너온도·평점 금지, "성인 확인 완료" 텍스트 배지만
 
 ## Security/Privacy AC
 
@@ -63,8 +63,8 @@ design-reference/D-001/DESIGN.md §9 Destination Card; design-reference/UI_CONTR
 
 ## Test Cases
 
-- Functional AC 전체가 구현되어 실제로 동작한다: 제목/국가·지역·기간/모집 인원/스타일 태그/신뢰 배지(매너온도)
-- Visual AC 전체가 렌더링 결과에서 확인된다: 별점(★) 금지, 텍스트/배지형 신뢰 지표만
+- Functional AC 전체가 구현되어 실제로 동작한다: 제목/국가·지역·기간/모집 인원/스타일 태그/신뢰 배지(성인 확인 완료 텍스트 배지)
+- Visual AC 전체가 렌더링 결과에서 확인된다: 별점(★)·매너온도·평점 금지, "성인 확인 완료" 텍스트 배지만
 - Security/Privacy AC가 위반되지 않는다: 이메일·연락처 필드 렌더링 금지
 - Verify 절 방법으로 재현 가능하다: 수동 렌더 확인
 

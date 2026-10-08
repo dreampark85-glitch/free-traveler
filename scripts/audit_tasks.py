@@ -533,14 +533,20 @@ def check_17_18(rows: list[dict], excluded_rows: list[dict]) -> None:
 # ---------------------------------------------------------------------------
 
 def write_manifest(rows: list[dict]) -> None:
-    fieldnames = COLUMNS + ["detail_file", "detail_file_exists"]
+    # build_waves.py가 넣은 wave_id 열은 감사가 다시 쓸 때 보존한다.
+    waves: dict[str, str] = {}
+    if MANIFEST_PATH.exists():
+        with MANIFEST_PATH.open(encoding="utf-8-sig", newline="") as f:
+            waves = {r["task_id"]: r["wave_id"] for r in csv.DictReader(f) if r.get("wave_id")}
+    fieldnames = COLUMNS + ["detail_file", "detail_file_exists"] + (["wave_id"] if waves else [])
     with MANIFEST_PATH.open("w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for r in rows:
             detail_file = f"TASKS/TASK-{r['task_id']}.md"
             exists = (ROOT / detail_file).exists()
-            writer.writerow({**r, "detail_file": detail_file, "detail_file_exists": exists})
+            extra = {"wave_id": waves.get(r["task_id"], "")} if waves else {}
+            writer.writerow({**r, "detail_file": detail_file, "detail_file_exists": exists, **extra})
 
 
 def write_report(rows: list[dict], excluded_rows: list[dict], details: dict[str, str]) -> bool:

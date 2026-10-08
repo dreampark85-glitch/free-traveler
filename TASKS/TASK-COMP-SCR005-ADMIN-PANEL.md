@@ -51,7 +51,7 @@ API-ADMIN-OPERATIONS, AUTH-SETUP
 
 ## Functional AC
 
-정확히 2개 Section만: ①신고 처리 현황(OPEN/RESOLVED/DISMISSED 필터) ②외부 연결 링크 관리(항공/숙소 HTTPS URL 설정)
+정확히 2개 Section만: ①신고 처리 현황(OPEN/RESOLVED/DISMISSED 필터) ②외부 URL 설정(항공/숙소 HTTPS URL 설정)
 
 ## Visual AC
 
@@ -63,7 +63,7 @@ Admin 역할이 아니면 렌더링 자체가 없음(RLS 이중 방어); HTTP/`j
 
 ## Test Cases
 
-- Functional AC 전체가 구현되어 실제로 동작한다: 정확히 2개 Section만: ①신고 처리 현황(OPEN/RESOLVED/DISMISSED 필터) ②외부 연결 링크 관리(항공/숙소 HTTPS URL 설정)
+- Functional AC 전체가 구현되어 실제로 동작한다: 정확히 2개 Section만: ①신고 처리 현황(OPEN/RESOLVED/DISMISSED 필터) ②외부 URL 설정(항공/숙소 HTTPS URL 설정)
 - Visual AC 전체가 렌더링 결과에서 확인된다: 통계 그래프/KPI 카드/감사 로그 타임라인 금지; 신고 목록·URL 설정 로딩 중 Skeleton 표시, API 조회 실패 시 재시도 버튼이 있는 인라인 오류 상태 표시(빈 화면 금지)
 - Security/Privacy AC가 위반되지 않는다: Admin 역할이 아니면 렌더링 자체가 없음(RLS 이중 방어); HTTP/`javascript:`/`data:` URL 저장 차단
 - Verify 절 방법으로 재현 가능하다: E2E-MATE-AUTH 관리자 시나리오
@@ -85,5 +85,5 @@ E2E-MATE-AUTH 관리자 시나리오
 ## Forbidden
 
 - Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `src/components/scr005/AdminPanel.tsx`(신규)
-- 신고 처리 현황/외부 연결 링크 관리 2개 Section 외에 통계 그래프·KPI 카드·감사 로그 타임라인을 추가하지 않는다.
+- 신고 처리 현황/외부 URL 설정 2개 Section 외에 통계 그래프·KPI 카드·감사 로그 타임라인을 추가하지 않는다.
 - `docs/UIUX_TRACEABILITY.md`에서 EXCLUDED로 표시된 Requirement에 대응하는 기능을 구현하지 않는다.

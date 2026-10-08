@@ -51,7 +51,7 @@ PAGE-SCR001, PAGE-SCR002
 
 ## Functional AC
 
-UC-01(여행지 탐색), UC-07(안전정보), UC-08(대표 소개) 핵심 흐름 방문+상호작용, axe-core 통합 검사(serious/critical 0건)
+핵심 흐름 ①UC-01 여행지 탐색(필터→카드→Drawer) ②UC-07·UC-08 안전정보 Drawer와 대표 소개(/about) 방문+상호작용, axe-core 통합 검사(serious/critical 0건)
 
 ## Visual AC
 
@@ -63,7 +63,7 @@ UC-01(여행지 탐색), UC-07(안전정보), UC-08(대표 소개) 핵심 흐름
 
 ## Test Cases
 
-- Functional AC 전체가 구현되어 실제로 동작한다: UC-01(여행지 탐색), UC-07(안전정보), UC-08(대표 소개) 핵심 흐름 방문+상호작용, axe-core 통합 검사(serious/critical 0건)
+- Functional AC 전체가 구현되어 실제로 동작한다: 핵심 흐름 ①UC-01 여행지 탐색(필터→카드→Drawer) ②UC-07·UC-08 안전정보 Drawer와 대표 소개(/about) 방문+상호작용, axe-core 통합 검사(serious/critical 0건)
 - Verify 절 방법으로 재현 가능하다: `playwright test --project=chromium e2e/public-smoke.spec.ts`
 
 ## Verify

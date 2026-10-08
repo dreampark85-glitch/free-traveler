@@ -35,6 +35,7 @@
       "drawers": ["destination-detail-drawer", "safety-info-drawer"],
       "states": ["loading", "success", "empty", "error"],
       "forbidden_features": [
+        "realtime_chat",
         "real_time_pricing",
         "ads",
         "star_ratings",
@@ -92,6 +93,9 @@
       "drawers": [],
       "states": ["loading", "success", "error", "unauthorized"],
       "forbidden_features": [
+        "realtime_chat",
+        "named_external_vendor",
+        "input_value_forwarding_wording",
         "real_time_pricing",
         "booking_payment_ui",
         "contact_info_leak",
@@ -119,6 +123,8 @@
       "drawers": ["mate-post-detail-drawer-mobile"],
       "states": ["loading", "success", "empty", "error", "unauthorized"],
       "forbidden_features": [
+        "realtime_chat",
+        "manner_temperature",
         "star_ratings",
         "booking_payment_ui",
         "public_audit_log",
@@ -150,6 +156,9 @@
       "drawers": [],
       "states": ["loading", "success", "empty", "error", "unauthorized"],
       "forbidden_features": [
+        "realtime_chat",
+        "manner_temperature",
+        "admin_public_data_or_parameter_links",
         "admin_analytics_dashboard",
         "cross_role_tab_leakage",
         "account_deletion_backend_ui",

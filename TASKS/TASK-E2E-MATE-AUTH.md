@@ -51,7 +51,7 @@ PAGE-SCR004, PAGE-SCR005, AUTH-SETUP
 
 ## Functional AC
 
-UC-05(참가 요청·승인)·UC-06(신고·차단·관리자 처리) 로그인부터 관리자 신고 상태 변경까지 전 구간
+핵심 흐름 ⑤UC-05 동행 목록→상세→참가 요청→작성자 승인 ⑥UC-06 신고·차단→관리자 신고 상태 변경, 로그인부터 전 구간(Playwright 핵심 흐름 총 6개, chromium 전용)
 
 ## Visual AC
 
@@ -63,7 +63,7 @@ UC-05(참가 요청·승인)·UC-06(신고·차단·관리자 처리) 로그인�
 
 ## Test Cases
 
-- Functional AC 전체가 구현되어 실제로 동작한다: UC-05(참가 요청·승인)·UC-06(신고·차단·관리자 처리) 로그인부터 관리자 신고 상태 변경까지 전 구간
+- Functional AC 전체가 구현되어 실제로 동작한다: 핵심 흐름 ⑤UC-05 동행 목록→상세→참가 요청→작성자 승인 ⑥UC-06 신고·차단→관리자 신고 상태 변경, 로그인부터 전 구간(Playwright 핵심 흐름 총 6개, chromium 전용)
 - Security/Privacy AC가 위반되지 않는다: 비로그인 상태에서 참가/신고/차단 폼이 렌더링되지 않고 로그인 유도만 나타나는지 검증
 - Verify 절 방법으로 재현 가능하다: `playwright test --project=chromium e2e/mate-auth.spec.ts`
 

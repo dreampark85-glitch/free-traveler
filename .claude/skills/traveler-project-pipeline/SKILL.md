@@ -1,26 +1,27 @@
 ---
 name: traveler-project-pipeline
-description: Generates, details, and audits the Free Traveler Next.js implementation Task List from SCREEN_ROUTE_CONTRACT.json, UI_CONTRACT.md, D-001/DESIGN.md, and PROJECT_SCOPE.md. Use when creating, regenerating, expanding, or auditing the Traveler project's Task List (TASKS/00_TASK_LIST.md) or Task Detail files (TASKS/TASK-<ID>.md) — /gen-tasklist, /gen-task-details, /audit-tasks.
+description: Traveler PRD/SRS에서 Task를 생성·상세화·감사하고 5개 Screen과 Wave 개발을 지원하는 프로젝트 Skill
 ---
 
 # Traveler Project Pipeline
 
 This skill is the single source of truth for the **Task 생성 Pipeline** that turns the approved UI/UX contract (5 Screens) and the 114-requirement SRS into an implementable Next.js Task List + per-task detail files. `.claude/commands/gen-tasklist.md`, `.claude/commands/gen-task-details.md`, and `.claude/commands/audit-tasks.md` all defer to the rules, schemas, and taxonomy defined here. If a command's instructions and this skill ever disagree, this skill wins.
 
-**이 파일은 실제 저장소 상태(2026-09-17 기준)를 기준으로 유지된다.** 과거에 존재했던 `tasks/TASK_LIST.json`(소문자, JSON) 스키마와 `docs/UIUX_TRACEABILITY.md` 입력은 폐기되었다 — 실제 산출물은 아래 표의 대문자 `TASKS/` 경로다.
+**이 파일은 실제 저장소 상태(2026-09-17 기준)를 기준으로 유지된다.** 과거에 존재했던 `tasks/TASK_LIST.json`(소문자, JSON) 스키마는 폐기되었다 — 실제 산출물은 아래 표의 대문자 `TASKS/` 경로다.
 
 ## Inputs (read-only — never edit these from this pipeline)
 
 | Path | Role |
 |---|---|
 | `docs/06_SRS_UIUX_REVISED.md` | Requirement 원문, Priority, Screen/Route/Scope, Release Acceptance Criteria |
+| `docs/UIUX_TRACEABILITY.md` | Requirement별 Implementation Status와 Screen/Route/Page Entry 연결(114행) |
 | `docs/PROJECT_SCOPE.md` | IMPLEMENT vs EXCLUDED 분류, 구현 방식 원칙(정적 데이터, localStorage, Toast-not-email, 조회 시점 파생, 6-테이블 DB 범위, 관리자 범위 제한), 91/23/114 커버리지 총계(§6) |
 | `design-reference/D-001/DESIGN.md` | LOCKED 디자인 토큰, Section 계약, 최소 콘텐츠 수, Empty State 규칙, Do/Do Not |
 | `design-reference/UI_CONTRACT.md` | 화면별 Section 순서, Component 목록, 상태, 사용자 행동, 이동, Desktop/Mobile 규칙, 금지 기능 |
 | `design-reference/SCREEN_ROUTE_CONTRACT.json` | **Screen 목록의 단일 소스**(Rule 2) — routes, page entries, tiers, technical_routes, required_navigation |
 | `package.json`, 실제 `src/app/**` 트리 | 현재 실제 구현 상태 — 항상 실시간으로 확인하고 가정하지 않는다(Rule 4) |
 
-`docs/UIUX_TRACEABILITY.md`는 더 이상 이 Pipeline의 필수 입력이 아니다. Requirement 전수(114개)는 `REQ-FUNC-001..080` + `REQ-NF-001..034` 숫자 범위로 직접 구성하고, `docs/PROJECT_SCOPE.md` §6 요약 표(80/70/10, 34/21/13, 114/91/23)와 교차검증한다.
+`docs/UIUX_TRACEABILITY.md`는 Requirement별 Implementation Status(IMPLEMENT/EXCLUDED)와 Screen·Route 연결의 입력이며, `scripts/validate_inputs.py`가 114개 전수·중복·IMPLEMENT/EXCLUDED 합계를 `docs/PROJECT_SCOPE.md` §6 요약 표(80/70/10, 34/21/13, 114/91/23)와 교차검증한다. 이 Pipeline은 이 문서를 수정하지 않는다 — Task 열(`PENDING_TASK_GENERATION`)의 실제 Task ID 채우기는 별도 승인된 갱신 작업으로만 수행한다.
 
 ## Outputs (this pipeline owns and overwrites these)
 
@@ -56,6 +57,32 @@ This skill is the single source of truth for the **Task 생성 Pipeline** that t
 18. **`/gen-task-details`가 상세 파일 작성/갱신을 마치면 반드시 `python3 scripts/audit_tasks.py`를 실행**하고 결과를 보여준다 — 이번 산출물에 대해 감사를 최소 1회 실행하기 전에는 "완료"로 선언하지 않는다.
 19. **Page Owner AC는 Screen의 Section 순서와 최소 콘텐츠 수를 `design-reference/D-001/DESIGN.md` §19 / `design-reference/UI_CONTRACT.md`에서 원문 그대로 가져와 명시해야 한다**(예: SCR-001 7개 Section, 국내 6장/해외 6장/동기 6~7개/안전정보 6장/동행 미리보기 3건; SCR-002 7개 Section, Timeline 6+/Footprints 30개국+/Gallery 8+/Favorite Places 4; SCR-003 6개 Section, Tip 3장, 탭 3개; SCR-004 6개 Section, 목록 최대 8장; SCR-005 역할별 탭 + 관리자 탭 정확히 2 섹션).
 20. **Page Owner AC는 큰 빈 영역과 placeholder 문구를 금지해야 한다**, 모든 Empty State가 (a) 완결된 한국어 안내 문장, (b) 이용 방법 문장, (c) 다음 행동 CTA 세 요소를 포함하도록 요구한다(D-001 §20 반영). 이 세 요소 없이 "빈 상태 처리" 정도로만 적은 AC는 감사에 실패한다.
+
+---
+
+## CLAUDE.md와의 관계
+
+루트 `CLAUDE.md`의 23개 전역 규칙과 Harness Marker가 우선한다. 이 Skill의 규칙은 그 규칙을 Task 생성·감사 관점에서 구체화한 것이며 충돌하지 않는다. 충돌처럼 보이는 경우 `CLAUDE.md`를 따르고 사용자에게 보고한다. Screen 목록은 `SCREEN_ROUTE_CONTRACT.json`, 디자인은 `design-reference/D-001/DESIGN.md`, 요구사항은 `docs/06_SRS_UIUX_REVISED.md`, 분류는 `docs/PROJECT_SCOPE.md`가 정본이다.
+
+## 기본 Auth · 성인 · RLS 규칙
+
+- **Auth**: Supabase 이메일 인증만 사용한다. 동행 쓰기 API는 진입 전에 서버에서 세션을 검증하고 비회원은 401로 차단한다(REQ-FUNC-027).
+- **성인 확인**: `is_adult`(boolean)와 `adult_verified_at`만 저장하고 생년월일은 수집·저장하지 않는다(REQ-FUNC-028). 성인 확인이 없으면 동행 글 작성·참가 요청이 불가하다.
+- **RLS**: 6개 테이블 모두 RLS를 활성화한다. 본인 글·요청, 요청 대상 작성자, Moderator/Admin만 비공개 데이터를 열람하며, 부정 접근은 403 또는 빈 결과여야 한다(REQ-FUNC-044, REQ-NF-013). Client 코드는 RLS가 적용되는 경로로만 접근한다.
+- **키 분리**: `NEXT_PUBLIC_` 접두사가 없는 값(Service Role Key 포함)은 서버 전용이며 Client Component·브라우저 번들에서 사용하지 않는다.
+- **쓰기 범위**: Supabase 쓰기는 Auth·동행·신고·차단·관리자 설정(외부 URL)으로 제한한다. 여행지·안전정보·대표 소개는 `src/data` 정적 데이터이며 DB에 쓰지 않는다.
+
+## Wave 내부 순차 실행
+
+- 사용자의 개발 실행 단위는 Wave이며 표준 명령은 `/run-wave WXX`다. Wave 밖의 임의 진입점으로 개발을 시작하지 않는다.
+- 한 Agent가 Wave 안의 Task를 `Depends On` 순서로 **한 번에 하나씩** 구현한다. 여러 Task를 동시에 병렬로 건드리지 않는다.
+- 각 Task는 `/prepare-task`(읽기 전용 사전 점검)를 통과한 뒤 `/implement-task`로 구현하고, 현재 Task의 Expected Files 밖 파일은 수정하지 않는다.
+- Preview Checkpoint(Page Owner Task 완료 시점)에서 Wave를 멈추고, 사람의 Preview 확인 후에만 다음 화면 Wave로 진행한다.
+- Branch·PR·Merge는 자동으로 만들지 않는다. PR은 사용자가 요청할 때만 만들고 Merge는 항상 사람이 수동으로 한다.
+
+## EXCLUDED 보호
+
+`docs/PROJECT_SCOPE.md`에서 EXCLUDED로 분류된 23개 Requirement는 구현하지 않는다. Task List의 `## NON_IMPLEMENTATION` 표에 계속 등재하며 삭제하지 않고, 상세 Task 파일도 만들지 않는다. 구현 중 EXCLUDED 기능이 필요해 보이면 구현하지 말고 사용자에게 보고한다. AWS·EC2 인프라, 자동 Merge Runner, 전체 콘텐츠 CMS, 외부 이메일 사업자 연동, 범용 감사 로그, 자동 백업·장애 알림도 만들지 않는다.
 
 ---
 

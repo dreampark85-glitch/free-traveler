@@ -101,6 +101,8 @@
 
 **영향:** Airbnb 워드마크·Cereal VF 서체·Rausch `#ff385c` 정확 색상값·하트 저장 아이콘·"Guest favorite"/"NEW" 배지 등 상표적 요소는 어떤 Task에서도 재현하지 않는다(`DESIGN_MANIFEST.md` 금지 사항). D-001이 LOCKED 상태인 동안 토큰 값·Section 계약·Do/Do Not 규칙은 직접 수정하지 않고, 변경이 필요하면 D-002 신버전 발행 절차를 따른다.
 
+**정정 기록(2026-10-08):** 재검증(`docs/STITCH_VALIDATION_REPORT.md`, 최종 판정 `STITCH_VALIDATION_NEEDS_HUMAN`)에서 Stitch 화면에 계획에 없던 요소(실시간 채팅, 매너온도, 특정 외부 업체명, 공공데이터 연동 링크)가 확인되어, 새 토큰·색상 없이 D-001 안에서 해당 허용 문구를 삭제하고 금지로 정정했다. 버전 번호는 올리지 않았고 `design-reference/DESIGN_MANIFEST.md` 이력 표에 정정 행으로 남겼다. 토큰 값·Section 계약을 바꾸는 변경은 여전히 D-002 발행 대상이다.
+
 ---
 
 ## DEC-009 — Playwright는 Chromium Smoke만 필수

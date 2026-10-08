@@ -51,7 +51,7 @@ PAGE-SCR003
 
 ## Functional AC
 
-UC-02(항공)·UC-03(호텔) 입력→요약→외부 이동 버튼 클릭까지, UC-04(동행 작성) 로그인 포함 흐름
+핵심 흐름 ③UC-02(항공)·UC-03(호텔) 입력→요약→외부 이동 버튼 클릭까지 ④UC-04 로그인 후 동행 작성(여행정보 입력 포함)
 
 ## Visual AC
 
@@ -63,7 +63,7 @@ UC-02(항공)·UC-03(호텔) 입력→요약→외부 이동 버튼 클릭까지
 
 ## Test Cases
 
-- Functional AC 전체가 구현되어 실제로 동작한다: UC-02(항공)·UC-03(호텔) 입력→요약→외부 이동 버튼 클릭까지, UC-04(동행 작성) 로그인 포함 흐름
+- Functional AC 전체가 구현되어 실제로 동작한다: 핵심 흐름 ③UC-02(항공)·UC-03(호텔) 입력→요약→외부 이동 버튼 클릭까지 ④UC-04 로그인 후 동행 작성(여행정보 입력 포함)
 - Security/Privacy AC가 위반되지 않는다: 외부 이동 클릭 시 새 탭 URL에 쿼리 파라미터가 없는지 검증
 - Verify 절 방법으로 재현 가능하다: `playwright test --project=chromium e2e/travel-tools.spec.ts`
 

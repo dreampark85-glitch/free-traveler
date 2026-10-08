@@ -119,8 +119,8 @@ def main() -> int:
     combined_text = claude_md_text + "\n" + skill_md_text
 
     # 4. traveler-screen-route-v1 Marker 존재 (+ 실제 Screen Contract schema_version과 일치)
-    if f"HARNESS_SCHEMA={HARNESS_SCHEMA}" not in claude_md_text and HARNESS_SCHEMA not in combined_text:
-        err(4, f"CLAUDE.md(또는 SKILL.md)에 '{HARNESS_SCHEMA}' Marker가 없습니다.")
+    if f"HARNESS_SCHEMA={HARNESS_SCHEMA}" not in claude_md_text:
+        err(4, f"CLAUDE.md에 'HARNESS_SCHEMA={HARNESS_SCHEMA}' Marker가 없습니다.")
     if SCREEN_CONTRACT_PATH.exists():
         try:
             contract = json.loads(SCREEN_CONTRACT_PATH.read_text(encoding="utf-8"))

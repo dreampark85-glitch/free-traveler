@@ -184,6 +184,7 @@ CI Lighthouse 성능 게이트나 전체 매트릭스 수동 접근성 테스트
 | `supabase/migrations/0002_rls_policies.sql` | §10 RLS 정책 정의 파일이 아직 없음 | `DB-RLS-BASE` |
 | `supabase/seed.sql` | 개발/테스트용 시드 데이터 파일이 아직 없음 | `DB-SEED-BASE` |
 | `src/lib/supabase/client.ts`, `src/lib/supabase/server.ts` | §9의 Browser/Server 클라이언트 분리 진입점이 아직 없음 | `DB-ACCESS` |
+| `.github/workflows/` 아래 CI 워크플로 | §13의 GitHub Actions(lint·typecheck·test) 정의가 아직 없음(`.github/` 디렉터리 자체가 없음) | `CI-LINT-TYPECHECK-TEST` |
 
 ### 누락된 의존성 (`package.json`에 미설치)
 
@@ -197,7 +198,9 @@ CI Lighthouse 성능 게이트나 전체 매트릭스 수동 접근성 테스트
 
 각 패키지 설치는 해당 패키지를 최초로 사용하는 Task(`DB-ACCESS`, `UNIT-*`, `E2E-*`)의 착수 시점에 그 Task 범위 안에서 수행한다 — 별도의 선행 "의존성 설치" Task를 새로 만들지 않는다.
 
-### 누락된 환경변수
+### 필요한 환경변수 (설정 여부 미확인)
+
+로컬에는 `.env`·`.env.local`이 존재하지만 보안 정책상 내용을 읽지 않았으므로, 아래 값이 실제로 설정되어 있는지는 확인하지 않았다. 해당 값을 처음 사용하는 Task 착수 시 개발자가 확인한다.
 
 | 환경변수 | 필요한 이유 | 비고 |
 |---|---|---|
@@ -206,7 +209,7 @@ CI Lighthouse 성능 게이트나 전체 매트릭스 수동 접근성 테스트
 | `FLIGHT_OUTBOUND_URL` | §5 항공 탭 외부 이동 대상(REQ-FUNC-016) | HTTPS 허용목록 검증 대상, 없으면 이동 차단 + 인라인 오류(REQ-FUNC-018) |
 | `HOTEL_OUTBOUND_URL` | §5 숙소 탭 외부 이동 대상(REQ-FUNC-024) | 위와 동일(REQ-FUNC-026) |
 
-`.env` 또는 `.env.local` 파일 자체가 저장소에 없으므로(정상 — 커밋 대상 아님), 위 값은 로컬 개발 시 `.env.local`에, 배포 시 Vercel 프로젝트 환경변수에 각각 등록되어야 한다. 이 문서는 값 자체를 다루지 않는다.
+`.env*`는 `.gitignore`로 커밋 대상에서 제외되어 있다. 위 값은 로컬 개발 시 `.env.local`에, 배포 시 Vercel 프로젝트 환경변수에 각각 등록되어야 한다. 이 문서는 값 자체를 다루지 않는다.
 
 ### 명시적으로 범위 밖 — 착수 차단 사유로 취급하지 않음
 

@@ -250,7 +250,7 @@ def forbidden_for(row: dict) -> str:
     if row["category"] == "E2E_TEST":
         lines.append("- Chromium 외 브라우저 프로젝트(firefox/webkit)를 추가하지 않는다.")
     if row["task_id"] == "COMP-SCR005-ADMIN-PANEL":
-        lines.append("- 신고 처리 현황/외부 연결 링크 관리 2개 Section 외에 통계 그래프·KPI 카드·감사 로그 타임라인을 추가하지 않는다.")
+        lines.append("- 신고 처리 현황/외부 URL 설정 2개 Section 외에 통계 그래프·KPI 카드·감사 로그 타임라인을 추가하지 않는다.")
 
     lines.append("- `docs/UIUX_TRACEABILITY.md`에서 EXCLUDED로 표시된 Requirement에 대응하는 기능을 구현하지 않는다.")
     return "\n".join(lines)

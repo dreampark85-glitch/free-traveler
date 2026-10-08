@@ -28,8 +28,8 @@ git status --porcelain
 
 ### 2. Task가 현재 Wave에 포함되는지
 
-- Wave의 Task 구성을 정의한 문서(예: `TASKS/WAVE_<WAVE_ID>.md`, `TASKS/WAVE_PLAN.md` 등 저장소에 실제로 존재하는 파일)를 찾는다.
-- 그런 문서가 아예 없다면(2026-09-17 기준 이 저장소에는 아직 Wave 정의 파일이 없다), 이 검사를 통과로 처리할 수 없다 — Wave 범위가 어디에도 기록되어 있지 않으면 `TASK_ID`가 `WAVE_ID`에 속하는지 판정할 근거가 없기 때문이다. 이 경우 검사를 실패로 기록하고, 최종 판정에서 `BLOCKED_INPUT`의 근거로 사용한다(사용자에게 Wave 구성을 어디서 확인해야 하는지, 혹은 이번 호출에 Task 목록을 함께 제공해야 하는지 명확히 요청한다).
+- Wave의 Task 구성을 정의한 문서를 찾는다. 기본 소스는 `TASKS/WAVE_PLAN.md`(Wave별 Task 목록)이며, 같은 구성이 `TASKS/WAVE_STATE.json`의 `waves[].task_ids`에도 있다. 두 파일이 서로 다르면 이 검사를 실패로 기록하고 어느 쪽과 어느 쪽이 다른지 적는다. `TASKS/WAVE_<WAVE_ID>.md` 같은 다른 형태도 저장소에 실제로 있으면 함께 확인한다.
+- 그런 문서가 아예 없다면, 이 검사를 통과로 처리할 수 없다 — Wave 범위가 어디에도 기록되어 있지 않으면 `TASK_ID`가 `WAVE_ID`에 속하는지 판정할 근거가 없기 때문이다. 이 경우 검사를 실패로 기록하고, 최종 판정에서 `BLOCKED_INPUT`의 근거로 사용한다(사용자에게 Wave 구성을 어디서 확인해야 하는지, 혹은 이번 호출에 Task 목록을 함께 제공해야 하는지 명확히 요청한다).
 - Wave 정의 문서가 있다면 그 문서에서 `WAVE_ID`에 배정된 Task ID 목록을 읽고, `TASK_ID`가 그 목록에 있는지 확인한다.
 
 ### 3. Depends On 완료 여부

@@ -51,11 +51,11 @@ COMP-SCR005-ROLE-TABS, COMP-SCR005-AUTH-FORMS, COMP-SCR005-PROFILE-FORM, COMP-SC
 
 ## Functional AC
 
-현재 역할(Guest/Member/Admin)의 **Intro → 핵심 작업 → 도움말 또는 다음 행동**만 표시. 역할별 구성: Guest=로그인/가입(COMP-SCR005-AUTH-FORMS); Adult Member=프로필(COMP-SCR005-PROFILE-FORM)+내 활동(COMP-SCR005-MY-ACTIVITY); Moderator/Admin=프로필+내 활동+관리자(COMP-SCR005-ADMIN-PANEL). COMP-SCR005-ROLE-TABS로 역할별 탭을 **실제로 조립**하며, **역할에 없는 관리 영역은 렌더링하지 않는다**(서버/클라이언트 모두, CSS 숨김으로 대체 금지).
+현재 역할(Guest/Member/Admin)의 **Intro → 핵심 작업 → 도움말 또는 다음 행동**만 표시. 역할별 구성: Guest=로그인/가입(COMP-SCR005-AUTH-FORMS); Adult Member=프로필(COMP-SCR005-PROFILE-FORM)+내 활동(COMP-SCR005-MY-ACTIVITY); Moderator/Admin=프로필+내 활동+관리자(COMP-SCR005-ADMIN-PANEL). COMP-SCR005-ROLE-TABS로 역할별 탭을 **실제로 조립**하며, **역할에 없는 관리 영역은 렌더링하지 않는다**(서버/클라이언트 모두, CSS 숨김으로 대체 금지). **Section별 데이터 출처**: Guest 로그인/가입=AUTH-SETUP 세션; 프로필=`user_profile`(DB-ACCESS); 내 글·받은/보낸 요청=`mate_post`·`mate_application`(API-MATE-POSTS/API-MATE-APPLICATIONS); 차단 목록=`user_block`; 신고 처리 현황=`report`(API-ADMIN-OPERATIONS); 외부 URL 설정=`outbound_link_setting`(API-ADMIN-OPERATIONS).
 
 ## Visual AC
 
-관리자 탭은 정확히 2개 Section(신고 처리 현황/외부 연결 링크 관리), 통계 그래프·KPI 카드·감사 로그 타임라인 절대 금지. **Lorem ipsum·"준비 중"·빈 카드 금지.** 내 글/받은요청/보낸요청/차단목록/신고목록 0건 시 각각 완성형 Empty State("아직 ○○이 없어요"+이용 방법+CTA), Desktop/Mobile 여백 규칙 준수. 내 활동·관리자 탭 데이터 로딩 중 Skeleton 표시(COMP-SCR005-MY-ACTIVITY/ADMIN-PANEL), API 조회 실패 시 빈 화면 대신 재시도 버튼이 있는 인라인 오류 상태 표시.
+관리자 탭은 정확히 2개 Section(신고 처리 현황/외부 URL 설정(항공·숙소 HTTPS URL 2개)), 통계 그래프·KPI 카드·감사 로그 타임라인 절대 금지. **Lorem ipsum·"준비 중"·빈 카드 금지.** 내 글/받은요청/보낸요청/차단목록/신고목록 0건 시 각각 완성형 Empty State("아직 ○○이 없어요"+이용 방법+CTA), Desktop/Mobile 여백 규칙 준수. 내 활동·관리자 탭 데이터 로딩 중 Skeleton 표시(COMP-SCR005-MY-ACTIVITY/ADMIN-PANEL), API 조회 실패 시 빈 화면 대신 재시도 버튼이 있는 인라인 오류 상태 표시.
 
 ## Security/Privacy AC
 
@@ -63,8 +63,8 @@ COMP-SCR005-ROLE-TABS, COMP-SCR005-AUTH-FORMS, COMP-SCR005-PROFILE-FORM, COMP-SC
 
 ## Test Cases
 
-- Functional AC 전체가 구현되어 실제로 동작한다: 현재 역할(Guest/Member/Admin)의 **Intro → 핵심 작업 → 도움말 또는 다음 행동**만 표시. 역할별 구성: Guest=로그인/가입(COMP-SCR005-AUTH-FORMS); Adult Member=프로필(COMP-SCR005-PROFILE-FORM)+내 활동(COMP-SCR005-MY-ACTIVITY); Moderator/Admin=프로필+내 활동+관리자(COMP-SCR005-ADMIN-PANEL). COMP-SCR005-ROLE-TABS로 역할별 탭을 **실제로 조립**하며, **역할에 없는 관리 영역은 렌더링하지 않는다**(서버/클라이언트 모두, CSS 숨김으로 대체 금지).
-- Visual AC 전체가 렌더링 결과에서 확인된다: 관리자 탭은 정확히 2개 Section(신고 처리 현황/외부 연결 링크 관리), 통계 그래프·KPI 카드·감사 로그 타임라인 절대 금지. **Lorem ipsum·"준비 중"·빈 카드 금지.** 내 글/받은요청/보낸요청/차단목록/신고목록 0건 시 각각 완성형 Empty State("아직 ○○이 없어요"+이용 방법+CTA), Desktop/Mobile 여백 규칙 준수. 내 활동·관리자 탭 데이터 로딩 중 Skeleton 표시(COMP-SCR005-MY-ACTIVITY/ADMIN-PANEL), API 조회 실패 시 빈 화면 대신 재시도 버튼이 있는 인라인 오류 상태 표시.
+- Functional AC 전체가 구현되어 실제로 동작한다: 현재 역할(Guest/Member/Admin)의 **Intro → 핵심 작업 → 도움말 또는 다음 행동**만 표시. 역할별 구성: Guest=로그인/가입(COMP-SCR005-AUTH-FORMS); Adult Member=프로필(COMP-SCR005-PROFILE-FORM)+내 활동(COMP-SCR005-MY-ACTIVITY); Moderator/Admin=프로필+내 활동+관리자(COMP-SCR005-ADMIN-PANEL). COMP-SCR005-ROLE-TABS로 역할별 탭을 **실제로 조립**하며, **역할에 없는 관리 영역은 렌더링하지 않는다**(서버/클라이언트 모두, CSS 숨김으로 대체 금지). **Section별 데이터 출처**: Guest 로그인/가입=AUTH-SETUP 세션; 프로필=`user_profile`(DB-ACCESS); 내 글·받은/보낸 요청=`mate_post`·`mate_application`(API-MATE-POSTS/API-MATE-APPLICATIONS); 차단 목록=`user_block`; 신고 처리 현황=`report`(API-ADMIN-OPERATIONS); 외부 URL 설정=`outbound_link_setting`(API-ADMIN-OPERATIONS).
+- Visual AC 전체가 렌더링 결과에서 확인된다: 관리자 탭은 정확히 2개 Section(신고 처리 현황/외부 URL 설정(항공·숙소 HTTPS URL 2개)), 통계 그래프·KPI 카드·감사 로그 타임라인 절대 금지. **Lorem ipsum·"준비 중"·빈 카드 금지.** 내 글/받은요청/보낸요청/차단목록/신고목록 0건 시 각각 완성형 Empty State("아직 ○○이 없어요"+이용 방법+CTA), Desktop/Mobile 여백 규칙 준수. 내 활동·관리자 탭 데이터 로딩 중 Skeleton 표시(COMP-SCR005-MY-ACTIVITY/ADMIN-PANEL), API 조회 실패 시 빈 화면 대신 재시도 버튼이 있는 인라인 오류 상태 표시.
 - Security/Privacy AC가 위반되지 않는다: 역할에 없는 탭은 서버 컴포넌트+RLS 양쪽에서 접근 불가(REQ-FUNC-044, REQ-NF-013); 성인 확인은 생년월일 대신 `is_adult`+`adult_verified_at`만 저장(REQ-FUNC-028); 관리자 외부 URL 설정은 HTTPS 허용목록만 저장 가능(REQ-FUNC-077)
 - Verify 절 방법으로 재현 가능하다: TEST-RLS-BASIC, E2E-MATE-AUTH
 
