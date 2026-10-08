@@ -56,9 +56,14 @@
         "ROUTE-NOT-FOUND-ERROR",
         "ROUTE-POLICY-PAGES"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "DB-SCHEMA-BASE": "done",
+        "ROUTE-NOT-FOUND-ERROR": "done",
+        "ROUTE-POLICY-PAGES": "done"
+      }
     },
     {
       "wave_id": "W04",
