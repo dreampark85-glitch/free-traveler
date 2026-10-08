@@ -74,9 +74,15 @@
         "DB-RLS-BASE",
         "DB-SEED-BASE"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "COMP-SCR001-DESTINATION-EXPLORER": "done",
+        "COMP-SCR001-SAFETY-DRAWER": "done",
+        "DB-RLS-BASE": "done",
+        "DB-SEED-BASE": "done"
+      }
     },
     {
       "wave_id": "W05",
