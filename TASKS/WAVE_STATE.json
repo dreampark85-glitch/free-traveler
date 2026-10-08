@@ -14,17 +14,17 @@
         "GLOBAL-DESIGN-TOKENS",
         "GLOBAL-SEO-METADATA"
       ],
-      "status": "blocked",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null,
       "task_status": {
-        "COMP-SHARED-MATE-POST-CARD": "blocked",
-        "COMP-SHARED-MATE-STATE-UTIL": "pending",
-        "DATA-DESTINATIONS": "pending",
-        "DATA-REPRESENTATIVE": "pending",
-        "DATA-SAFETY": "pending",
-        "GLOBAL-DESIGN-TOKENS": "pending",
-        "GLOBAL-SEO-METADATA": "pending"
+        "COMP-SHARED-MATE-POST-CARD": "done",
+        "COMP-SHARED-MATE-STATE-UTIL": "done",
+        "DATA-DESTINATIONS": "done",
+        "DATA-REPRESENTATIVE": "done",
+        "DATA-SAFETY": "done",
+        "GLOBAL-DESIGN-TOKENS": "done",
+        "GLOBAL-SEO-METADATA": "done"
       }
     },
     {
@@ -39,7 +39,14 @@
       ],
       "status": "pending",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "COMP-SHARED-CTA-BANNER": "pending",
+        "COMP-SHARED-DESTINATION-CARD": "pending",
+        "COMP-SHARED-FAVORITES-SHARE": "pending",
+        "GLOBAL-A11Y-TOAST": "pending",
+        "GLOBAL-LAYOUT-NAV-FOOTER": "pending"
+      }
     },
     {
       "wave_id": "W03",
