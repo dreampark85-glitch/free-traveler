@@ -92,9 +92,14 @@
         "COMP-SCR001-SEARCH-BAR",
         "DB-ACCESS"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "COMP-SCR001-DESTINATION-DRAWER": "done",
+        "COMP-SCR001-SEARCH-BAR": "done",
+        "DB-ACCESS": "done"
+      }
     },
     {
       "wave_id": "W06",
