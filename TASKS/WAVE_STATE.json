@@ -1,6 +1,6 @@
 {
   "schema_version": "traveler-wave-state-v1",
-  "generated_at": "2026-10-08T15:48:22Z",
+  "generated_at": "2026-10-08T17:12:27Z",
   "waves": [
     {
       "wave_id": "W01",
@@ -69,8 +69,8 @@
       "wave_id": "W04",
       "title": "Supabase Auth, 6개 Table, 기본 RLS",
       "task_ids": [
-        "AUTH-SETUP",
         "COMP-SCR001-DESTINATION-EXPLORER",
+        "COMP-SCR001-SAFETY-DRAWER",
         "DB-RLS-BASE",
         "DB-SEED-BASE"
       ],
@@ -82,7 +82,7 @@
       "wave_id": "W05",
       "title": "Supabase Auth, 6개 Table, 기본 RLS",
       "task_ids": [
-        "COMP-SCR001-SAFETY-DRAWER",
+        "COMP-SCR001-DESTINATION-DRAWER",
         "COMP-SCR001-SEARCH-BAR",
         "DB-ACCESS"
       ],
@@ -92,12 +92,9 @@
     },
     {
       "wave_id": "W06",
-      "title": "SCR-001 메인 Component와 Page Owner",
+      "title": "Supabase Auth, 6개 Table, 기본 RLS",
       "task_ids": [
-        "COMP-SCR001-DESTINATION-DRAWER",
-        "COMP-SCR002-FAVORITE-PLACES",
-        "COMP-SCR002-FOOTPRINT-CHIPS",
-        "COMP-SCR002-GALLERY"
+        "AUTH-SETUP"
       ],
       "status": "pending",
       "checkpoint_required": false,
@@ -107,7 +104,9 @@
       "wave_id": "W07",
       "title": "SCR-002 대표 소개 Component와 Page Owner",
       "task_ids": [
-        "API-MATE-POSTS",
+        "COMP-SCR002-FAVORITE-PLACES",
+        "COMP-SCR002-FOOTPRINT-CHIPS",
+        "COMP-SCR002-GALLERY",
         "COMP-SCR002-INTRO-PHILOSOPHY",
         "COMP-SCR002-STAT-CARD",
         "COMP-SCR002-TIMELINE"
@@ -118,26 +117,6 @@
     },
     {
       "wave_id": "W08",
-      "title": "SCR-001 메인 Component와 Page Owner",
-      "task_ids": [
-        "COMP-SCR001-MATE-PREVIEW"
-      ],
-      "status": "pending",
-      "checkpoint_required": false,
-      "checkpoint_result": null
-    },
-    {
-      "wave_id": "W09",
-      "title": "SCR-001 메인 Component와 Page Owner",
-      "task_ids": [
-        "PAGE-SCR001"
-      ],
-      "status": "pending",
-      "checkpoint_required": true,
-      "checkpoint_result": null
-    },
-    {
-      "wave_id": "W10",
       "title": "SCR-002 대표 소개 Component와 Page Owner",
       "task_ids": [
         "PAGE-SCR002"
@@ -147,12 +126,12 @@
       "checkpoint_result": null
     },
     {
-      "wave_id": "W11",
+      "wave_id": "W09",
       "title": "SCR-003 여행 입력·외부 이동·동행글 입력 Component와 Page Owner",
       "task_ids": [
+        "API-MATE-POSTS",
         "COMP-SCR003-FLIGHT-FORM",
         "COMP-SCR003-HOTEL-FORM",
-        "COMP-SCR003-MATE-COMPOSER",
         "COMP-SCR003-TAB-SWITCHER"
       ],
       "status": "pending",
@@ -160,7 +139,40 @@
       "checkpoint_result": null
     },
     {
+      "wave_id": "W10",
+      "title": "SCR-001 메인 Component와 Page Owner",
+      "task_ids": [
+        "COMP-SCR001-MATE-PREVIEW"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W11",
+      "title": "SCR-001 메인 Component와 Page Owner",
+      "task_ids": [
+        "PAGE-SCR001"
+      ],
+      "status": "pending",
+      "checkpoint_required": true,
+      "checkpoint_result": null
+    },
+    {
       "wave_id": "W12",
+      "title": "SCR-003 여행 입력·외부 이동·동행글 입력 Component와 Page Owner",
+      "task_ids": [
+        "API-MATE-APPLICATIONS",
+        "API-REPORTS-BLOCKS",
+        "COMP-SCR003-MATE-COMPOSER",
+        "COMP-SCR004-FILTER-BAR"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W13",
       "title": "SCR-003 여행 입력·외부 이동·동행글 입력 Component와 Page Owner",
       "task_ids": [
         "PAGE-SCR003"
@@ -170,25 +182,12 @@
       "checkpoint_result": null
     },
     {
-      "wave_id": "W13",
-      "title": "SCR-004 동행 목록·상세·신청 Component와 Page Owner",
-      "task_ids": [
-        "API-MATE-APPLICATIONS",
-        "API-REPORTS-BLOCKS",
-        "COMP-SCR004-FILTER-BAR",
-        "COMP-SCR004-MATE-DETAIL",
-        "COMP-SCR004-MATE-LIST"
-      ],
-      "status": "pending",
-      "checkpoint_required": false,
-      "checkpoint_result": null
-    },
-    {
       "wave_id": "W14",
       "title": "SCR-004 동행 목록·상세·신청 Component와 Page Owner",
       "task_ids": [
-        "API-ADMIN-OPERATIONS",
         "COMP-SCR004-BLOCK-ACTION",
+        "COMP-SCR004-MATE-DETAIL",
+        "COMP-SCR004-MATE-LIST",
         "COMP-SCR004-PARTICIPATION-REQUEST",
         "COMP-SCR004-REPORT-FORM"
       ],
@@ -210,7 +209,7 @@
       "wave_id": "W16",
       "title": "SCR-005 계정·내 활동·간단 관리자 Component와 Page Owner",
       "task_ids": [
-        "COMP-SCR005-ADMIN-PANEL",
+        "API-ADMIN-OPERATIONS",
         "COMP-SCR005-AUTH-FORMS",
         "COMP-SCR005-MY-ACTIVITY",
         "COMP-SCR005-PROFILE-FORM",
@@ -224,6 +223,16 @@
       "wave_id": "W17",
       "title": "SCR-005 계정·내 활동·간단 관리자 Component와 Page Owner",
       "task_ids": [
+        "COMP-SCR005-ADMIN-PANEL"
+      ],
+      "status": "pending",
+      "checkpoint_required": false,
+      "checkpoint_result": null
+    },
+    {
+      "wave_id": "W18",
+      "title": "SCR-005 계정·내 활동·간단 관리자 Component와 Page Owner",
+      "task_ids": [
         "PAGE-SCR005"
       ],
       "status": "pending",
@@ -231,7 +240,7 @@
       "checkpoint_result": null
     },
     {
-      "wave_id": "W18",
+      "wave_id": "W19",
       "title": "Unit·Playwright·접근성·CI",
       "task_ids": [
         "CI-LINT-TYPECHECK-TEST",
@@ -247,7 +256,7 @@
       "checkpoint_result": null
     },
     {
-      "wave_id": "W19",
+      "wave_id": "W20",
       "title": "Unit·Playwright·접근성·CI",
       "task_ids": [
         "UNIT-TRAVEL-DATES"
@@ -257,7 +266,7 @@
       "checkpoint_result": null
     },
     {
-      "wave_id": "W20",
+      "wave_id": "W21",
       "title": "Vercel Preview와 Release 확인",
       "task_ids": [
         "DEPLOY-VERCEL-ENV",

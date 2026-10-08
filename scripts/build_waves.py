@@ -254,8 +254,8 @@ def main() -> int:
                 continue
             batch.append(t)
             used_files.update(files_of[t])
-        # 4개 미만이면 바로 다음 그룹의 ready Task(Page Owner 제외, Release 그룹 제외)로 채운다(Page Owner Wave는 채우지 않는다).
-        for t in sorted((t for t in ready if groups[t] == g + 1 <= 9 and not is_po[t]
+        # 4개 미만이면 바로 다음 그룹의 ready Task(Page Owner 제외, Release·테스트 그룹 제외)로 채운다(Page Owner Wave는 채우지 않는다).
+        for t in sorted((t for t in ready if groups[t] == g + 1 <= 8 and not is_po[t]
                          and not any(is_po[x] for x in batch)),
                         key=lambda t: (groups[t], t)):
             if len(batch) >= MIN_WAVE_SIZE:

@@ -45,13 +45,13 @@ DB-SCHEMA-BASE, DB-RLS-BASE
 
 ## Expected Files
 
-`src/lib/supabase/client.ts`, `src/lib/supabase/server.ts`, `src/lib/validation/*.schema.ts`(zod, 신규)
+`src/lib/supabase/client.ts`, `src/lib/supabase/server.ts`, `src/lib/validation/*.schema.ts`(zod, 신규), `package.json`, `package-lock.json`(수정: `@supabase/supabase-js`, `@supabase/ssr`, `zod` 의존성 추가)
 
 이 목록 밖의 파일은 생성·수정하지 않는다(Forbidden 절 참고).
 
 ## Functional AC
 
-모든 쓰기 경로에 zod 서버 측 입력 검증 적용, React 자동 이스케이프 외 저장 XSS 방지 계층 제공
+`@supabase/supabase-js`·`@supabase/ssr`·`zod` 설치와 함께 모든 쓰기 경로에 zod 서버 측 입력 검증 적용, React 자동 이스케이프 외 저장 XSS 방지 계층 제공
 
 ## Visual AC
 
@@ -63,7 +63,7 @@ OWASP 기반 XSS 페이로드로 저장 시도 시 차단
 
 ## Test Cases
 
-- Functional AC 전체가 구현되어 실제로 동작한다: 모든 쓰기 경로에 zod 서버 측 입력 검증 적용, React 자동 이스케이프 외 저장 XSS 방지 계층 제공
+- Functional AC 전체가 구현되어 실제로 동작한다: `@supabase/supabase-js`·`@supabase/ssr`·`zod` 설치와 함께 모든 쓰기 경로에 zod 서버 측 입력 검증 적용, React 자동 이스케이프 외 저장 XSS 방지 계층 제공
 - Security/Privacy AC가 위반되지 않는다: OWASP 기반 XSS 페이로드로 저장 시도 시 차단
 - Verify 절 방법으로 재현 가능하다: 수동 침투 테스트 시나리오(SRS §6.8.2 항목 6)
 
@@ -83,6 +83,6 @@ OWASP 기반 XSS 페이로드로 저장 시도 시 차단
 
 ## Forbidden
 
-- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `src/lib/supabase/client.ts`, `src/lib/supabase/server.ts`, `src/lib/validation/*.schema.ts`(zod, 신규)
+- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `src/lib/supabase/client.ts`, `src/lib/supabase/server.ts`, `src/lib/validation/*.schema.ts`(zod, 신규), `package.json`, `package-lock.json`(수정: `@supabase/supabase-js`, `@supabase/ssr`, `zod` 의존성 추가)
 - 정의된 6개 테이블(`user_profile`, `mate_post`, `mate_application`, `user_block`, `report`, `outbound_link_setting`) 외의 테이블을 추가하지 않는다. 여행지·안전정보·대표 소개·감사 로그용 테이블은 만들지 않는다.
 - `docs/UIUX_TRACEABILITY.md`에서 EXCLUDED로 표시된 Requirement에 대응하는 기능을 구현하지 않는다.

@@ -8,7 +8,7 @@
 | Screen | SCR-005 |
 | Route | `/account`, `/auth/callback` |
 | Page Entry | `src/app/auth/callback/route.ts` |
-| Depends On | DB-SCHEMA-BASE |
+| Depends On | DB-SCHEMA-BASE, DB-ACCESS |
 | Source | TASKS/00_TASK_LIST.md Seq 12 |
 
 ## Context
@@ -41,7 +41,7 @@ docs/06_SRS_UIUX_REVISED.md §3~§4(해당 Requirement 행), docs/PROJECT_SCOPE.
 
 ## Depends On
 
-DB-SCHEMA-BASE
+DB-SCHEMA-BASE, DB-ACCESS
 
 ## Expected Files
 
