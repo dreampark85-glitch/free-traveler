@@ -107,9 +107,12 @@
       "task_ids": [
         "AUTH-SETUP"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "AUTH-SETUP": "done"
+      }
     },
     {
       "wave_id": "W07",
