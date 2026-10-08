@@ -14,9 +14,18 @@
         "GLOBAL-DESIGN-TOKENS",
         "GLOBAL-SEO-METADATA"
       ],
-      "status": "pending",
+      "status": "blocked",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "COMP-SHARED-MATE-POST-CARD": "blocked",
+        "COMP-SHARED-MATE-STATE-UTIL": "pending",
+        "DATA-DESTINATIONS": "pending",
+        "DATA-REPRESENTATIVE": "pending",
+        "DATA-SAFETY": "pending",
+        "GLOBAL-DESIGN-TOKENS": "pending",
+        "GLOBAL-SEO-METADATA": "pending"
+      }
     },
     {
       "wave_id": "W02",

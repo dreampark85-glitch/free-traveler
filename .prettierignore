@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+build
+coverage
+package-lock.json
+docs
+TASKS
+design-reference
+.claude
+.omc
+playwright-report
+test-results

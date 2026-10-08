@@ -44,3 +44,10 @@ next-env.d.ts
 __pycache__/
 *.pyc
 scripts/.validate_inputs_report.json
+
+# playwright
+/playwright-report/
+/test-results/
+
+# oh-my-claudecode local state
+/.omc/
