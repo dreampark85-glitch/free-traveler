@@ -125,9 +125,17 @@
         "COMP-SCR002-STAT-CARD",
         "COMP-SCR002-TIMELINE"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "COMP-SCR002-FAVORITE-PLACES": "done",
+        "COMP-SCR002-FOOTPRINT-CHIPS": "done",
+        "COMP-SCR002-GALLERY": "done",
+        "COMP-SCR002-INTRO-PHILOSOPHY": "done",
+        "COMP-SCR002-STAT-CARD": "done",
+        "COMP-SCR002-TIMELINE": "done"
+      }
     },
     {
       "wave_id": "W08",
