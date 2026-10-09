@@ -133,7 +133,15 @@ export const representativeProfile: RepresentativeProfile = {
     "lisbon",
   ],
 
-  heroImage: null,
+  heroImage: {
+    src: "/images/about/n-seoul-tower-night.jpg",
+    alt: "어두운 밤하늘 아래 푸른 조명이 켜진 N서울타워와 남산 성곽길의 가로등 불빛",
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Seoul_Tower_from_Namsan_Park_(9595146693).jpg",
+    author: "travel oriented from Manila, Philippines",
+    licenseType: "CC BY-SA 2.0",
+  },
+
   contactLinks: [],
 
   profileStatus: {

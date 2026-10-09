@@ -143,9 +143,9 @@
       "task_ids": [
         "PAGE-SCR002"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": true,
-      "checkpoint_result": "waiting_for_preview",
+      "checkpoint_result": "approved",
       "task_status": {
         "PAGE-SCR002": "done"
       }

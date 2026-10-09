@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import FavoritePlaces from "@/components/scr002/FavoritePlaces";
 import FootprintChips from "@/components/scr002/FootprintChips";
@@ -90,16 +91,33 @@ export default function AboutPage() {
             </ul>
           ) : null}
         </div>
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-surface-soft">
+        <figure className="flex flex-col gap-2">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-surface-soft">
+            {"src" in hero ? (
+              <Image
+                src={hero.src}
+                alt={hero.alt}
+                fill
+                priority
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
+            ) : null}
+          </div>
           {"src" in hero ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={hero.src}
-              alt={hero.alt}
-              className="h-full w-full object-cover"
-            />
+            <figcaption className="text-caption text-muted">
+              사진:{" "}
+              <a
+                href={hero.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${focusRingClass} rounded-sm underline`}
+              >
+                {hero.author} · {hero.licenseType}
+              </a>
+            </figcaption>
           ) : null}
-        </div>
+        </figure>
       </section>
 
       <div className="bg-surface-soft">
