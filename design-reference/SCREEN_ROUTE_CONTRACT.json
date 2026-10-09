@@ -184,6 +184,13 @@
     },
     {
       "category": "api_route",
+      "path": "/api/mates/[id]",
+      "entry": "src/app/api/mates/[id]/route.ts",
+      "counted_in_screen_count": false,
+      "note": "동행 모집글 상세 조회/수정·마감/삭제 API (SRS API-05/API-07, REQ-FUNC-027/033/038 연계)"
+    },
+    {
+      "category": "api_route",
       "path": "/api/mates/[id]/requests",
       "entry": "src/app/api/mates/[id]/requests/route.ts",
       "counted_in_screen_count": false,
