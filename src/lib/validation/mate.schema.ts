@@ -28,7 +28,7 @@ export const matePostSchema = z
     description: plainText(1, 3000),
     /** 안전수칙에 동의해야 글을 올릴 수 있다. */
     safetyAgreed: z.literal(true, { error: "동행 안전수칙에 동의해 주세요." }),
-    policyVersion: plainText(1, 20),
+    policyVersion: plainText(1, 60),
   })
   .refine((v) => v.endDate >= v.startDate, {
     path: ["endDate"],

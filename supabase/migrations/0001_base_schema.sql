@@ -37,7 +37,7 @@ create table public.mate_post (
   description       text check (char_length(description) <= 3000),
   status            text not null default 'OPEN' check (status in ('OPEN', 'CLOSED', 'HIDDEN', 'DELETED')),
   -- 안전수칙 동의: 작성 시 정책 버전과 동의 시각을 함께 저장한다.
-  policy_version    varchar(20) not null,
+  policy_version    varchar(60) not null,
   policy_agreed_at  timestamptz not null,
   created_at        timestamptz not null default now(),
   constraint mate_post_period check (end_date >= start_date)

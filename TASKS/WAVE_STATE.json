@@ -320,7 +320,7 @@
         "UNIT-CONTACT-DETECTION",
         "UNIT-MATE-STATE"
       ],
-      "status": "blocked",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null,
       "task_status": {
@@ -328,7 +328,7 @@
         "E2E-MATE-AUTH": "done",
         "E2E-PUBLIC-SMOKE": "done",
         "E2E-TRAVEL-TOOLS": "done",
-        "TEST-RLS-BASIC": "blocked",
+        "TEST-RLS-BASIC": "done",
         "UNIT-CONTACT-DETECTION": "done",
         "UNIT-MATE-STATE": "done"
       }

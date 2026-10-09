@@ -9,16 +9,23 @@
 -- 1. 인증 사용자(가짜) -------------------------------------------------------------------
 insert into auth.users (
   id, instance_id, aud, role, email, email_confirmed_at,
-  raw_app_meta_data, raw_user_meta_data, created_at, updated_at
+  raw_app_meta_data, raw_user_meta_data, created_at, updated_at,
+  -- GoTrue가 사용자를 읽을 때 NULL이면 "Database error loading user"가 나므로 빈 문자열로 둔다.
+  confirmation_token, recovery_token, email_change, email_change_token_new,
+  email_change_token_current, phone_change, phone_change_token, reauthentication_token
 ) values
   ('00000000-0000-4000-8000-000000000001', '00000000-0000-0000-0000-000000000000',
-   'authenticated', 'authenticated', 'seed-owner@example.test', now(), '{}', '{}', now(), now()),
+   'authenticated', 'authenticated', 'seed-owner@example.test', now(), '{}', '{}', now(), now(),
+   '', '', '', '', '', '', '', ''),
   ('00000000-0000-4000-8000-000000000002', '00000000-0000-0000-0000-000000000000',
-   'authenticated', 'authenticated', 'seed-applicant@example.test', now(), '{}', '{}', now(), now()),
+   'authenticated', 'authenticated', 'seed-applicant@example.test', now(), '{}', '{}', now(), now(),
+   '', '', '', '', '', '', '', ''),
   ('00000000-0000-4000-8000-000000000003', '00000000-0000-0000-0000-000000000000',
-   'authenticated', 'authenticated', 'seed-outsider@example.test', now(), '{}', '{}', now(), now()),
+   'authenticated', 'authenticated', 'seed-outsider@example.test', now(), '{}', '{}', now(), now(),
+   '', '', '', '', '', '', '', ''),
   ('00000000-0000-4000-8000-000000000004', '00000000-0000-0000-0000-000000000000',
-   'authenticated', 'authenticated', 'seed-admin@example.test', now(), '{}', '{}', now(), now())
+   'authenticated', 'authenticated', 'seed-admin@example.test', now(), '{}', '{}', now(), now(),
+   '', '', '', '', '', '', '', '')
 on conflict (id) do nothing;
 
 -- 2. 프로필: 작성자, 요청자, 제3자, 관리자 ------------------------------------------------

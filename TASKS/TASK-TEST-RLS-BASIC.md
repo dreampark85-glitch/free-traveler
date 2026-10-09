@@ -45,7 +45,7 @@ DB-RLS-BASE, DB-SEED-BASE
 
 ## Expected Files
 
-`tests/integration/rls.test.ts`(신규)
+`tests/integration/rls.test.ts`(신규), `vitest.config.ts`(기존 수정: `tests/integration/**` 포함, 환경변수가 없으면 테스트가 스스로 skip)
 
 이 목록 밖의 파일은 생성·수정하지 않는다(Forbidden 절 참고).
 
@@ -83,5 +83,5 @@ Supabase 로컬 인스턴스 대상 통합 테스트 실행
 
 ## Forbidden
 
-- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `tests/integration/rls.test.ts`(신규)
+- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `tests/integration/rls.test.ts`(신규), `vitest.config.ts`(기존 수정: `tests/integration/**` 포함, 환경변수가 없으면 테스트가 스스로 skip)
 - `docs/UIUX_TRACEABILITY.md`에서 EXCLUDED로 표시된 Requirement에 대응하는 기능을 구현하지 않는다.
