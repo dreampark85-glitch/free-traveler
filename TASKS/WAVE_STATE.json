@@ -159,9 +159,15 @@
         "COMP-SCR003-HOTEL-FORM",
         "COMP-SCR003-TAB-SWITCHER"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "API-MATE-POSTS": "done",
+        "COMP-SCR003-FLIGHT-FORM": "done",
+        "COMP-SCR003-HOTEL-FORM": "done",
+        "COMP-SCR003-TAB-SWITCHER": "done"
+      }
     },
     {
       "wave_id": "W10",
