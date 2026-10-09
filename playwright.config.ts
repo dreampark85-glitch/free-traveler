@@ -16,13 +16,16 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
-  // Preview URL을 지정하지 않은 로컬 실행에서만 개발 서버를 띄운다.
+  // Preview URL을 지정하지 않은 실행에서만 서버를 띄운다.
+  // CI는 요청마다 컴파일하는 개발 서버 대신 빌드한 서버를 써서 첫 요청 지연으로 인한 시간 초과를 막는다.
   webServer: previewUrl
     ? undefined
     : {
-        command: "npm run dev",
+        command: process.env.CI
+          ? "npm run build && npm run start"
+          : "npm run dev",
         url: baseURL,
         reuseExistingServer: !process.env.CI,
-        timeout: 120_000,
+        timeout: process.env.CI ? 300_000 : 120_000,
       },
 });
