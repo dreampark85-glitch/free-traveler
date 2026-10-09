@@ -188,9 +188,12 @@
       "task_ids": [
         "PAGE-SCR001"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "checkpoint_required": true,
-      "checkpoint_result": null
+      "checkpoint_result": "waiting_for_preview",
+      "task_status": {
+        "PAGE-SCR001": "done"
+      }
     },
     {
       "wave_id": "W12",
