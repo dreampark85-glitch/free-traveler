@@ -353,12 +353,12 @@
         "DEPLOY-VERCEL-ENV",
         "RELEASE-PERF-A11Y-CHECK"
       ],
-      "status": "in_progress",
+      "status": "completed",
       "checkpoint_required": false,
       "checkpoint_result": null,
       "task_status": {
         "DEPLOY-VERCEL-ENV": "done",
-        "RELEASE-PERF-A11Y-CHECK": "in_progress"
+        "RELEASE-PERF-A11Y-CHECK": "done"
       }
     }
   ]
