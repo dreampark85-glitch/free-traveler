@@ -254,9 +254,12 @@
       "task_ids": [
         "PAGE-SCR004"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": true,
-      "checkpoint_result": null
+      "checkpoint_result": "approved",
+      "task_status": {
+        "PAGE-SCR004": "done"
+      }
     },
     {
       "wave_id": "W16",
