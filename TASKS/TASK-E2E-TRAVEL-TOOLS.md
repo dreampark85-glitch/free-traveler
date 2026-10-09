@@ -45,7 +45,7 @@ PAGE-SCR003
 
 ## Expected Files
 
-`e2e/travel-tools.spec.ts`(신규)
+`tests/e2e/travel-tools.spec.ts`(신규)
 
 이 목록 밖의 파일은 생성·수정하지 않는다(Forbidden 절 참고).
 
@@ -83,6 +83,6 @@ PAGE-SCR003
 
 ## Forbidden
 
-- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `e2e/travel-tools.spec.ts`(신규)
+- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `tests/e2e/travel-tools.spec.ts`(신규)
 - Chromium 외 브라우저 프로젝트(firefox/webkit)를 추가하지 않는다.
 - `docs/UIUX_TRACEABILITY.md`에서 EXCLUDED로 표시된 Requirement에 대응하는 기능을 구현하지 않는다.

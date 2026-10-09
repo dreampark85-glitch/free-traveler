@@ -45,7 +45,7 @@ docs/06_SRS_UIUX_REVISED.md §5 Release Acceptance Criteria; docs/PROJECT_SCOPE.
 
 ## Expected Files
 
-`.github/workflows/ci.yml`(신규)
+`.github/workflows/ci.yml`(기존 수정)
 
 이 목록 밖의 파일은 생성·수정하지 않는다(Forbidden 절 참고).
 
@@ -82,5 +82,5 @@ CI 워크플로 자체 실행 결과
 
 ## Forbidden
 
-- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `.github/workflows/ci.yml`(신규)
+- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `.github/workflows/ci.yml`(기존 수정)
 - `docs/UIUX_TRACEABILITY.md`에서 EXCLUDED로 표시된 Requirement에 대응하는 기능을 구현하지 않는다.

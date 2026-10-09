@@ -45,7 +45,7 @@ PAGE-SCR004, PAGE-SCR005, AUTH-SETUP
 
 ## Expected Files
 
-`e2e/mate-auth.spec.ts`(신규)
+`tests/e2e/auth-smoke.spec.ts`(기존 수정: 인증 흐름 E2E 완성)
 
 이 목록 밖의 파일은 생성·수정하지 않는다(Forbidden 절 참고).
 
@@ -83,6 +83,6 @@ PAGE-SCR004, PAGE-SCR005, AUTH-SETUP
 
 ## Forbidden
 
-- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `e2e/mate-auth.spec.ts`(신규)
+- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `tests/e2e/auth-smoke.spec.ts`(기존 수정: 인증 흐름 E2E 완성)
 - Chromium 외 브라우저 프로젝트(firefox/webkit)를 추가하지 않는다.
 - `docs/UIUX_TRACEABILITY.md`에서 EXCLUDED로 표시된 Requirement에 대응하는 기능을 구현하지 않는다.

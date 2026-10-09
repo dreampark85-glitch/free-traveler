@@ -45,7 +45,7 @@ COMP-SCR003-MATE-COMPOSER
 
 ## Expected Files
 
-`tests/unit/contactDetection.test.ts`(신규)
+`tests/unit/contactDetection.test.ts`(신규), `vitest.config.ts`(기존 수정: `@/` 경로 별칭)
 
 이 목록 밖의 파일은 생성·수정하지 않는다(Forbidden 절 참고).
 
@@ -82,5 +82,5 @@ COMP-SCR003-MATE-COMPOSER
 
 ## Forbidden
 
-- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `tests/unit/contactDetection.test.ts`(신규)
+- Expected Files 목록 밖의 파일을 생성·수정하지 않는다: `tests/unit/contactDetection.test.ts`(신규), `vitest.config.ts`(기존 수정: `@/` 경로 별칭)
 - `docs/UIUX_TRACEABILITY.md`에서 EXCLUDED로 표시된 Requirement에 대응하는 기능을 구현하지 않는다.
