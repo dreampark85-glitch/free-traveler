@@ -353,9 +353,13 @@
         "DEPLOY-VERCEL-ENV",
         "RELEASE-PERF-A11Y-CHECK"
       ],
-      "status": "pending",
+      "status": "in_progress",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "DEPLOY-VERCEL-ENV": "done",
+        "RELEASE-PERF-A11Y-CHECK": "in_progress"
+      }
     }
   ]
 }
