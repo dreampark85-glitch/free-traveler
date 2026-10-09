@@ -175,9 +175,12 @@
       "task_ids": [
         "COMP-SCR001-MATE-PREVIEW"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "COMP-SCR001-MATE-PREVIEW": "done"
+      }
     },
     {
       "wave_id": "W11",
