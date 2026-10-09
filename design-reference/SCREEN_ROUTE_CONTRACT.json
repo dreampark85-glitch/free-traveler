@@ -212,6 +212,13 @@
     },
     {
       "category": "api_route",
+      "path": "/api/admin/reports",
+      "entry": "src/app/api/admin/reports/route.ts",
+      "counted_in_screen_count": false,
+      "note": "관리자 신고 목록 조회·상태 변경 API (SRS API-13, REQ-FUNC-041 연계)"
+    },
+    {
+      "category": "api_route",
       "path": "/api/applications/[id]",
       "entry": "src/app/api/applications/[id]/route.ts",
       "counted_in_screen_count": false,

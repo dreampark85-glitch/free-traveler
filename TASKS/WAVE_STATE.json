@@ -271,9 +271,16 @@
         "COMP-SCR005-PROFILE-FORM",
         "COMP-SCR005-ROLE-TABS"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "API-ADMIN-OPERATIONS": "done",
+        "COMP-SCR005-AUTH-FORMS": "done",
+        "COMP-SCR005-MY-ACTIVITY": "done",
+        "COMP-SCR005-PROFILE-FORM": "done",
+        "COMP-SCR005-ROLE-TABS": "done"
+      }
     },
     {
       "wave_id": "W17",
