@@ -339,9 +339,12 @@
       "task_ids": [
         "UNIT-TRAVEL-DATES"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "UNIT-TRAVEL-DATES": "done"
+      }
     },
     {
       "wave_id": "W21",
