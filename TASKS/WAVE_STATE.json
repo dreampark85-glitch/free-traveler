@@ -301,9 +301,12 @@
       "task_ids": [
         "PAGE-SCR005"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": true,
-      "checkpoint_result": null
+      "checkpoint_result": "approved",
+      "task_status": {
+        "PAGE-SCR005": "done"
+      }
     },
     {
       "wave_id": "W19",
