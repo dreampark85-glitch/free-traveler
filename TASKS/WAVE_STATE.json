@@ -288,9 +288,12 @@
       "task_ids": [
         "COMP-SCR005-ADMIN-PANEL"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "COMP-SCR005-ADMIN-PANEL": "done"
+      }
     },
     {
       "wave_id": "W18",
