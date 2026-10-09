@@ -237,9 +237,16 @@
         "COMP-SCR004-PARTICIPATION-REQUEST",
         "COMP-SCR004-REPORT-FORM"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "COMP-SCR004-BLOCK-ACTION": "done",
+        "COMP-SCR004-MATE-DETAIL": "done",
+        "COMP-SCR004-MATE-LIST": "done",
+        "COMP-SCR004-PARTICIPATION-REQUEST": "done",
+        "COMP-SCR004-REPORT-FORM": "done"
+      }
     },
     {
       "wave_id": "W15",
