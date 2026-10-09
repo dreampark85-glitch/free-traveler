@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "format:check": "prettier --check --no-error-on-unmatched-pattern \"src/**/*.{ts,tsx,css}\" \"tests/**/*.{ts,tsx}\" \"*.{ts,mjs,json}\" \".github/workflows/*.yml\"",
     "test:unit": "vitest run",
     "test:e2e": "playwright test --project=chromium --pass-with-no-tests",

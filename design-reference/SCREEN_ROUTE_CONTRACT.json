@@ -211,6 +211,27 @@
       "note": "관리자 외부 URL 설정 API (REQ-FUNC-077 연계)"
     },
     {
+      "category": "api_route",
+      "path": "/api/applications/[id]",
+      "entry": "src/app/api/applications/[id]/route.ts",
+      "counted_in_screen_count": false,
+      "note": "참가 요청 승인·거절 API (SRS API-09, REQ-FUNC-036 연계)"
+    },
+    {
+      "category": "api_route",
+      "path": "/api/blocks",
+      "entry": "src/app/api/blocks/route.ts",
+      "counted_in_screen_count": false,
+      "note": "사용자 차단·차단 목록 API (SRS API-10, REQ-FUNC-040 연계)"
+    },
+    {
+      "category": "api_route",
+      "path": "/api/blocks/[id]",
+      "entry": "src/app/api/blocks/[id]/route.ts",
+      "counted_in_screen_count": false,
+      "note": "차단 해제 API (SRS API-11, REQ-FUNC-040 연계)"
+    },
+    {
       "category": "not_found",
       "path": "*",
       "entry": "src/app/not-found.tsx",

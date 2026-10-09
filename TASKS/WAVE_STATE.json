@@ -204,9 +204,15 @@
         "COMP-SCR003-MATE-COMPOSER",
         "COMP-SCR004-FILTER-BAR"
       ],
-      "status": "pending",
+      "status": "completed",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "task_status": {
+        "API-MATE-APPLICATIONS": "done",
+        "API-REPORTS-BLOCKS": "done",
+        "COMP-SCR003-MATE-COMPOSER": "done",
+        "COMP-SCR004-FILTER-BAR": "done"
+      }
     },
     {
       "wave_id": "W13",
