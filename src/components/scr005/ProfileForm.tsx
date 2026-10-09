@@ -241,7 +241,7 @@ export default function ProfileForm({ userId }: { userId: string }) {
                 type="checkbox"
                 checked={adultChecked}
                 onChange={(e) => setAdultChecked(e.target.checked)}
-                className={`${focusRingClass} mt-0.5 size-5 accent-[#E85A34]`}
+                className={`${focusRingClass} mt-0.5 size-5 accent-coral`}
               />
               만 19세 이상임을 확인합니다.
             </label>

@@ -162,3 +162,14 @@
 **이유:** `docs/PROJECT_SCOPE.md`의 상태 정의 — "EXCLUDED: 만들지 않는다. 제외 이유를 기록한다." — 와, REQ-FUNC 80개+REQ-NF 34개 = 114개 요구사항 전수가 IMPLEMENT 또는 EXCLUDED로 커버되어야 한다는 원칙(구현 누락과 의도적 제외를 구분해야 함)이 근거다.
 
 **영향:** 어떤 Requirement ID도 Task 표와 EXCLUDED 표 양쪽에 모두 없거나(누락) 양쪽에 동시에 있으면(모순) 안 된다 — `scripts/audit_tasks.py`의 Check 17/18이 이를 지속 검증한다. EXCLUDED 항목에 대응하는 구현 코드나 상세 Task 파일은 만들지 않는다.
+
+---
+
+## DEC-015 — 코랄 색상을 접근성 기준에 맞춰 D-002로 보정
+
+**결정:** D-001 `color.coral` `#E85A34`는 글자·버튼 배경으로 쓰면 대비가 3.53:1(흰 배경)·3.27:1(`surface-soft`)로 WCAG AA(4.5:1)에 못 미친다. 같은 색상(hue)에서 밝기만 낮춘 `#C03A16`(hover `#A93313`)을 D-002로 발행해 글자·버튼에 쓰고, 원색 `#E85A34`는 장식 전용 토큰 `color.coral-accent`로 남긴다.
+
+**이유:** REQ-NF-024는 Playwright axe 검사에서 serious/critical 위반 0건을 요구한다. `/`와 `/about`이 모두 `color-contrast`(serious)로 실패했고, 위반 지점은 전부 코랄 글자·코랄 배경 흰 글자였다. D-001은 LOCKED라 직접 수정하지 않고 새 버전(`design-reference/D-002/DESIGN.md`)으로 발행했다.
+
+**영향:** `tailwind.config.ts`의 코랄 토큰 3개, 인라인 hex를 쓰던 컴포넌트(`MatePostCard`, 체크박스 `accent`)를 토큰으로 교체. `DESIGN_MANIFEST.md`의 이력과 Overlay를 갱신했다. 그 밖의 D-001 토큰과 Section 계약은 그대로다. CLAUDE.md의 `DESIGN_PATH`는 D-001로 유지하고 D-002는 Overlay로 취급한다.
+

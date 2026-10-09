@@ -435,7 +435,7 @@ export default function MateComposer({ viewer }: MateComposerProps) {
             onChange={(e) => setConsent(e.target.checked)}
             aria-invalid={Boolean(errors.consent)}
             aria-describedby={`${uid}-consent-help`}
-            className={`${focusRingClass} mt-1 size-5 accent-[#E85A34]`}
+            className={`${focusRingClass} mt-1 size-5 accent-coral`}
           />
           <span>
             <Link

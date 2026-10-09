@@ -19,8 +19,11 @@ const config: Config = {
         body: "#4B4A52",
         muted: "#6E6D76",
         "muted-soft": "#9B9AA2",
-        coral: "#E85A34",
-        "coral-hover": "#D14A26",
+        // D-002: 글자·버튼 배경에 쓰는 코랄은 WCAG AA(4.5:1)를 만족하도록 어둡게 보정했다.
+        coral: "#C03A16",
+        "coral-hover": "#A93313",
+        // D-001 원색. 글자·버튼에는 쓰지 않고 로고 점 같은 장식에만 쓴다.
+        "coral-accent": "#E85A34",
         "coral-tint": "#FCE7DE",
         "on-coral": "#FFFFFF",
         info: "#2A5FD9",

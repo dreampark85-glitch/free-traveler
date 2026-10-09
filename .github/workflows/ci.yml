@@ -46,8 +46,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      # Supabase Secret 없이 실행한다. 인증 Smoke(auth-smoke)는 필수 Gate가 아니므로 여기서 돌리지 않는다.
-      - run: npm run test:e2e:public
+      # Supabase Secret 없이 실행하는 공개 Smoke 2종(public-smoke, travel-tools)만 필수 Gate다.
+      # 인증 Smoke(auth-smoke)는 테스트 계정 Secret이 필요해 필수 Gate에서 제외한다.
+      # 외부 이동 주소는 공개 일반 주소라 Secret이 아니다. 설정해 두면 새 탭 호출의 쿼리 없음까지 검증한다.
+      - run: >-
+          npx playwright test --project=chromium --pass-with-no-tests
+          tests/e2e/public-smoke.spec.ts tests/e2e/travel-tools.spec.ts
+        env:
+          FLIGHT_OUTBOUND_URL: https://www.google.com/travel/flights
+          HOTEL_OUTBOUND_URL: https://www.google.com/travel/hotels
       - name: Upload Playwright report on failure
         if: failure()
         uses: actions/upload-artifact@v4

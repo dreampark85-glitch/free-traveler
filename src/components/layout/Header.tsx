@@ -29,7 +29,10 @@ export default function Header() {
           aria-label="Free Traveler 홈"
           className={`${focusRingClass} inline-flex items-center gap-2 rounded-sm`}
         >
-          <span aria-hidden="true" className="size-2.5 rounded-full bg-coral" />
+          <span
+            aria-hidden="true"
+            className="size-2.5 rounded-full bg-coral-accent"
+          />
           <span className="text-title-md text-ink">Free Traveler</span>
         </Link>
 

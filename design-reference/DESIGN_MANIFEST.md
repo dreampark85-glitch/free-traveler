@@ -3,6 +3,7 @@
 - **Active Design Version**: D-001
 - **Status**: LOCKED
 - **Active File**: `design-reference/D-001/DESIGN.md`
+- **Overlay (D-001 확장)**: `design-reference/D-002/DESIGN.md` — 코랄 계열 토큰 3개만 접근성 기준으로 보정한 버전. 이 토큰들은 D-002 값이 우선하고, 나머지는 D-001을 따른다.
 - **Vendor Reference**: `design-reference/vendor/airbnb/DESIGN.md` (레이아웃 철학 참고 전용 — 상표 요소 미사용)
 - **Approved Screens**: SCR-001, SCR-002, SCR-003, SCR-004, SCR-005
 - **Mobile Variants**: SCR-001, SCR-003
@@ -13,6 +14,7 @@
 |---|---|---|---|---|
 | D-001 | LOCKED | 2026-09-15 | `docs/04_UIUX_PLAN.md`, `docs/STITCH_VALIDATION_REPORT.md`, `design-reference/vendor/airbnb/DESIGN.md` | Stitch 승인 화면(SCR-001~005 Desktop, SCR-001·SCR-003 Mobile) 검증 결과를 반영해 04_UIUX_PLAN.md의 계획값을 정본화. 최초 LOCKED 버전. |
 | D-001 | LOCKED (정정) | 2026-10-08 | `docs/STITCH_VALIDATION_REPORT.md`(재검증) | 버전 변경 없는 정정: 매너온도 허용 문구 삭제, 관리자 탭을 신고 상태+항공·숙소 URL 2개 섹션으로 명확화, 여행 동기 Chip 6개로 확정, 실시간 채팅 금지 추가. 새 토큰·색상 추가 없음. |
+| D-002 | LOCKED (확장) | 2026-10-09 | `design-reference/D-001/DESIGN.md`, axe-core 접근성 검사 결과 | `color.coral` `#E85A34`→`#C03A16`, `color.coral-hover` `#D14A26`→`#A93313` 보정, 장식용 `color.coral-accent` `#E85A34` 추가. 글자·버튼 대비를 WCAG AA(4.5:1)로 맞춤. D-001 파일은 수정하지 않고 확장판으로 발행. |
 
 ## 규칙
 

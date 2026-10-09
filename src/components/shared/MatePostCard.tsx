@@ -30,19 +30,19 @@ export default function MatePostCard({
   const place = region ? `${country} · ${region}` : country;
 
   return (
-    <article className="flex h-full flex-col gap-3 rounded-[14px] border border-[#E4E1DA] bg-white p-5 transition-shadow hover:shadow-[0_1px_2px_rgba(36,35,39,.06),0_8px_20px_rgba(36,35,39,.08)]">
-      <h3 className="text-lg font-semibold text-[#242327]">{title}</h3>
-      <p className="text-sm text-[#6E6D76]">
+    <article className="flex h-full flex-col gap-3 rounded-[14px] border border-hairline bg-canvas p-5 transition-shadow hover:shadow-card">
+      <h3 className="text-lg font-semibold text-ink">{title}</h3>
+      <p className="text-sm text-muted">
         {place} · {formatDate(startDate)} – {formatDate(endDate)}
       </p>
       <ul className="flex flex-wrap gap-2" aria-label="모집 정보와 여행 스타일">
-        <li className="rounded-full bg-[#F0EEE9] px-3 py-1 text-xs text-[#4B4A52]">
+        <li className="rounded-full bg-surface-strong px-3 py-1 text-xs text-body">
           모집 {capacity}명
         </li>
         {styleTags.map((tag) => (
           <li
             key={tag}
-            className="rounded-full bg-[#F0EEE9] px-3 py-1 text-xs text-[#4B4A52]"
+            className="rounded-full bg-surface-strong px-3 py-1 text-xs text-body"
           >
             {tag}
           </li>
@@ -50,7 +50,7 @@ export default function MatePostCard({
       </ul>
       {adultVerified ? (
         <p className="mt-auto">
-          <span className="inline-block rounded-full bg-[#FCE7DE] px-3 py-1 text-xs font-medium text-[#E85A34]">
+          <span className="inline-block rounded-full bg-coral-tint px-3 py-1 text-xs font-medium text-coral">
             성인 확인 완료
           </span>
         </p>

@@ -324,13 +324,13 @@
       "checkpoint_required": false,
       "checkpoint_result": null,
       "task_status": {
-        "CI-LINT-TYPECHECK-TEST": "blocked",
-        "E2E-MATE-AUTH": "pending",
-        "E2E-PUBLIC-SMOKE": "pending",
-        "E2E-TRAVEL-TOOLS": "pending",
-        "TEST-RLS-BASIC": "pending",
-        "UNIT-CONTACT-DETECTION": "pending",
-        "UNIT-MATE-STATE": "pending"
+        "CI-LINT-TYPECHECK-TEST": "done",
+        "E2E-MATE-AUTH": "done",
+        "E2E-PUBLIC-SMOKE": "done",
+        "E2E-TRAVEL-TOOLS": "done",
+        "TEST-RLS-BASIC": "blocked",
+        "UNIT-CONTACT-DETECTION": "done",
+        "UNIT-MATE-STATE": "done"
       }
     },
     {
