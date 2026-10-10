@@ -11,15 +11,15 @@
 
 | 이름 | 유형 | 환경 | 노출 범위 |
 |---|---|---|---|
-| `FLIGHT_OUTBOUND_URL` | Secret | Production | 서버 전용(`NEXT_PUBLIC_` 없음) |
-| `HOTEL_OUTBOUND_URL` | Secret | Production | 서버 전용(`NEXT_PUBLIC_` 없음) |
-| `NEXT_PUBLIC_SUPABASE_URL` | Config | Production | 브라우저 공개 |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Config | Production | 브라우저 공개(anon 키, RLS 적용) |
+| `FLIGHT_OUTBOUND_URL` | Secret | Production, Preview | 서버 전용(`NEXT_PUBLIC_` 없음) |
+| `HOTEL_OUTBOUND_URL` | Secret | Production, Preview | 서버 전용(`NEXT_PUBLIC_` 없음) |
+| `NEXT_PUBLIC_SUPABASE_URL` | Config | Production, Preview | 브라우저 공개 |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Config | Production, Preview | 브라우저 공개(anon 키, RLS 적용) |
 
 - `SUPABASE_SERVICE_ROLE_KEY`는 Vercel에 **등록하지 않았다.** 앱 코드가 쓰지 않으며 로컬 통합 테스트 전용이다.
 - Task 문구의 "Supabase 키를 `NEXT_PUBLIC_` 없이"는 service role 같은 서버 전용 키에 해당한다. 앱은 `@supabase/ssr`로
   anon 키와 사용자 세션을 쓰므로 anon 키와 URL은 `NEXT_PUBLIC_` 이름이어야 읽힌다. anon 키는 공개해도 RLS가 보호한다.
-- Preview 환경에는 변수를 아직 등록하지 않았다. Preview 배포에서 Supabase를 쓰려면 같은 4개를 Preview에도 추가해야 한다.
+- Preview 환경에도 같은 4개를 등록했다(2026-10-10). `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`는 Production과 Preview에 함께, `FLIGHT_OUTBOUND_URL`, `HOTEL_OUTBOUND_URL`은 Preview용 항목을 따로 두었다.
 
 ## 2. 배포·TLS 확인
 
@@ -30,7 +30,9 @@
 | TLS | 통과 | HTTPS 제공, `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` |
 | Supabase 연결 | 통과 | `/api/mates`가 200과 시드 글을 반환, `/auth/callback`이 오류 코드와 함께 `/account`로 307 |
 | 환경변수 반영 | 통과 | 환경변수 등록 전에는 `/auth/callback`, `/api/mates`가 500이었고, 등록 후 재배포하자 해소됨 |
-| Preview 배포 | **미확인** | Preview 환경변수가 없고 Preview 배포를 확인하지 않았다 |
+| Preview 배포 | 통과 | 2026-10-10 `vercel deploy`(target preview)로 생성, 상태 Ready. Deployment Protection이 켜져 있어 외부 요청은 로그인 화면으로 302되며, `vercel curl`(인증 우회)로 확인 |
+| Preview 화면·API | 통과 | `/`, `/about`, `/travel-tools`, `/mates`, `/account`, `/api/mates` 모두 200(`/api/mates`는 시드 글 반환), `/auth/callback` 307 |
+| Preview 번들 키 노출 | 통과 | `service_role` 0건, 서버 전용 변수 이름 0건 |
 
 ## 3. 번들 비밀키 노출 검사
 
@@ -56,5 +58,4 @@ Production에 chromium Smoke를 실행했다(`PLAYWRIGHT_BASE_URL` 지정).
 
 - [ ] Supabase Auth → URL Configuration에 Production 주소와 `/auth/callback` Redirect URL을 등록했는지 확인
 - [ ] 실제 이메일로 가입·로그인해 인증 링크가 Production 주소로 돌아오는지 확인
-- [ ] Preview 배포를 쓸 경우 Preview 환경변수 4개 추가 후 배포 확인
-- [ ] GitHub Actions 최신 실행(`quality`, `public-smoke`) 결과 확인
+- [x] GitHub Actions 최신 실행 확인: `50c8688` 실행 성공(`quality`, `public-smoke`). 이전 실패는 CI의 개발 서버를 빌드한 서버로 바꿔 해소
