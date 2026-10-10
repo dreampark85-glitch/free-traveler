@@ -3,4 +3,7 @@
 
 body {
   @apply bg-canvas font-sans text-ink;
+  /* 한글은 단어 단위로 줄바꿈하고, 단어 하나가 너무 길 때만 글자 단위로 끊는다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
