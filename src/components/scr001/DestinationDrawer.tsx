@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { focusRingClass, touchTargetClass } from "@/components/ui/FocusRing";
 import type { Destination } from "@/data/destinations.schema";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { getRelatedDestinations } from "./DestinationExplorer";
 import SafetyDrawer from "./SafetyDrawer";
 
@@ -42,6 +43,8 @@ export default function DestinationDrawer({
   const closeRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const safetyOpenRef = useRef(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(dialogRef, open);
 
   useEffect(() => {
     safetyOpenRef.current = safetyCountry !== null;
@@ -77,6 +80,7 @@ export default function DestinationDrawer({
           className="absolute inset-0 bg-scrim"
         />
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-labelledby="destination-drawer-title"

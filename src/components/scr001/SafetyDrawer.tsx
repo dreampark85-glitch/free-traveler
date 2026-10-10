@@ -10,6 +10,7 @@ import {
   type AdvisoryLevel,
   type CountrySafety,
 } from "@/data/country-safety";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 type SafetyDrawerProps = {
   /** 안전정보를 보여줄 국가 코드. 열려 있는 동안만 의미가 있다. */
@@ -69,6 +70,8 @@ export default function SafetyDrawer({
   const open = countryCode !== null;
   const closeRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(dialogRef, open);
 
   useEffect(() => {
     if (!open) return;
@@ -98,6 +101,7 @@ export default function SafetyDrawer({
         className="absolute inset-0 bg-scrim"
       />
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="safety-drawer-title"
