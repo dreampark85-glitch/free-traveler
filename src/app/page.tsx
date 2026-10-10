@@ -165,11 +165,11 @@ function HomeContent() {
           >
             어디로 떠날지, 오늘 정해볼까요?
           </h1>
-          <p className="max-w-xl text-body-lg text-body">
+          <p className="max-w-[36rem] text-body-lg text-body">
             국내외 여행지와 국가별 안전정보를 한곳에서 살펴보고, 같은 일정으로
             떠날 동행도 찾아보세요.
           </p>
-          <div className="w-full max-w-xl">
+          <div className="w-full max-w-[36rem]">
             <Suspense
               fallback={<div className="h-14 rounded-full bg-canvas" />}
             >

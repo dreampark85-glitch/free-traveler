@@ -10,7 +10,7 @@ export default function Error({
   retry: () => void;
 }) {
   return (
-    <section className="mx-auto flex max-w-xl flex-col items-center gap-4 px-4 py-16 text-center md:py-24">
+    <section className="mx-auto flex max-w-[36rem] flex-col items-center gap-4 px-4 py-16 text-center md:py-24">
       <div
         role="alert"
         className="w-full rounded-md bg-danger-bg px-6 py-8 text-danger"

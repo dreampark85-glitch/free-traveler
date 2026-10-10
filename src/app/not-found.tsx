@@ -3,7 +3,7 @@ import { focusRingClass, touchTargetClass } from "@/components/ui/FocusRing";
 
 export default function NotFound() {
   return (
-    <section className="mx-auto flex max-w-xl flex-col items-center gap-4 px-4 py-16 text-center md:py-24">
+    <section className="mx-auto flex max-w-[36rem] flex-col items-center gap-4 px-4 py-16 text-center md:py-24">
       <h1 className="text-display-lg text-ink">찾는 페이지가 없어요</h1>
       <p className="text-body-md text-body">
         주소가 바뀌었거나 삭제된 페이지일 수 있어요. 홈이나 아래 메뉴에서 원하는

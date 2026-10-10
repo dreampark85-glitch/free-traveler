@@ -175,7 +175,7 @@ export default function MatesPage() {
           >
             함께 떠날 동행을 찾아보세요
           </h1>
-          <p className="max-w-xl text-body-lg text-body">
+          <p className="max-w-[36rem] text-body-lg text-body">
             같은 일정으로 떠날 사람을 만나 보세요. 처음 만나기 전에 동행
             안전수칙을 꼭 읽어 주세요.
           </p>

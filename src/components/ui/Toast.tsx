@@ -40,7 +40,7 @@ export default function ToastViewport() {
           <div
             key={toast.id}
             role={toast.variant === "error" ? "alert" : "status"}
-            className={`pointer-events-auto flex w-full max-w-md items-center gap-3 rounded-md px-4 py-3 text-body-sm shadow-card ${style.box}`}
+            className={`pointer-events-auto flex w-full max-w-[28rem] items-center gap-3 rounded-md px-4 py-3 text-body-sm shadow-card ${style.box}`}
           >
             <span aria-hidden="true">{style.icon}</span>
             <span className="flex-1">

@@ -108,7 +108,7 @@ export default async function AccountPage({
           title="로그인하거나 가입하세요"
           description="이메일로 가입하면 인증 메일이 도착해요. 인증을 마친 뒤 로그인할 수 있어요."
         >
-          <div className="max-w-xl">
+          <div className="max-w-[36rem]">
             <AuthForms />
           </div>
         </Block>
@@ -147,7 +147,7 @@ export default async function AccountPage({
           >
             계정을 관리하고 내 활동을 확인하세요
           </h1>
-          <p className="max-w-xl text-body-lg text-body">
+          <p className="max-w-[36rem] text-body-lg text-body">
             {role === "GUEST"
               ? "로그인하면 동행글을 올리고 참가 요청을 주고받을 수 있어요."
               : "프로필을 가꾸고, 내가 올린 글과 받은 요청을 한곳에서 관리해요."}
