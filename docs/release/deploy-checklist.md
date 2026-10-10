@@ -57,5 +57,6 @@ Production에 chromium Smoke를 실행했다(`PLAYWRIGHT_BASE_URL` 지정).
 ## 5. 남은 항목(사람 확인 필요)
 
 - [x] Supabase Auth → URL Configuration 등록 확인(2026-10-10). 서비스 키로 인증 링크를 생성해 `redirect_to`가 적용되는지 확인했다(링크 토큰은 기록하지 않음): Production·Preview(와일드카드)·localhost의 `/auth/callback`은 그대로 적용되고, 허용되지 않은 외부 주소는 Site URL(Production)로 대체된다. 등록 전에는 Site URL이 `http://localhost:3000`이었다.
-- [ ] 실제 이메일로 가입·로그인해 인증 링크가 Production 주소로 돌아오는지 확인 — 인증 메일이 도착하지 않아 **미확인**. 공개 설정(가입 허용, 이메일 인증 필요, 이메일 제공자 켜짐)과 앱 코드(`emailRedirectTo` 전달)는 정상이며, Supabase 기본 메일 서버의 발송 제한 가능성이 있다. Auth Logs의 오류 문구 확인 또는 외부 SMTP 연결이 필요하다.
+- [ ] 실제 이메일 가입 → 인증 메일 링크 → 로그인: **미확인.** 2026-10-10 비밀번호 재설정 요청이 `429 over_email_send_rate_limit`으로 거부됐다. Supabase 기본 메일 서버의 시간당 발송 한도 때문이며 앱 코드나 Auth URL 문제가 아니다. 서비스 운영에는 외부 SMTP(Resend, SendGrid 등) 연결이 필요하고, 연결 뒤 가입 메일 흐름을 다시 확인한다.
+- [x] 메일 없이 로그인 확인(2026-10-10): 자동 인증된 임시 계정을 만들어 Production `/account`에서 로그인했다. 로그인 후 탭이 `프로필`, `내 활동`으로 바뀌고 새로고침 후에도 세션이 유지됐다. 임시 계정은 확인 직후 삭제했다.
 - [x] GitHub Actions 최신 실행 확인: `50c8688` 실행 성공(`quality`, `public-smoke`). 이전 실패는 CI의 개발 서버를 빌드한 서버로 바꿔 해소
